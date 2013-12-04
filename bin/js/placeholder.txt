@@ -1,0 +1,1 @@
+make FDT/Haxe happy by ensuring the bin/js folder exists
