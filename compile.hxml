@@ -1,0 +1,31 @@
+-js bin/js/prolog.js
+-main Prolog
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+
+--next
+
+-js bin/js/App.js
+-main TimingTests
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+
+--next
+
+-js bin/js/unit-tests.js
+-main blub.prolog.tests.UnitTests 
+-dce no
+-cp src
+
+-D query_trace
+-D compile_dump
+-D include_asm
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog

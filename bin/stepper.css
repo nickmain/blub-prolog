@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+
+table {
+    background-color:#eeeeee;
+}
+.stepper {
+    width: 100%;	
+}
+.flag {
+    background-color:#cccccc;
+    padding: 6px;
+}
+.flag-value {
+    background-color:pink;
+    font-family: monospace;
+    padding: 5px;
+}
+.envcell {
+    background-color:#cccccc;
+    padding: 6px;
+}
+.env-value {
+    background-color:#ffeeee;
+    font-family: monospace;
+    padding: 5px;
+}
+.stack-title {
+    background-color:#808080;
+    color:#ffffff;
+    padding: 6px;
+    width: 20%;
+}
+.stack-cell {
+    background-color:#eeeeee;
+    padding: 0px;
+    vertical-align: top;
+}
+.stack-item {
+    font-family: monospace;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 3px;
+    padding-right: 3px;    
+    border-bottom: black dotted thin;
+}
+
+.instruction {
+    background-color:#eeeeff;
+}
+.code-frame {
+    background-color:#eeffee;
+}
+.choicepoint {
+    background-color:#ffffee;
+}
+.cut-barrier {
+    background-color:#ffeeff;
+}
+.binding {
+    background-color:#eeffff;
+}

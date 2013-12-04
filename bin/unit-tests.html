@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>blub-prolog unit tests</title>
+	</head>
+    <link rel="stylesheet" type="text/css" href="stepper.css" />
+
+	<body>
+
+		<div id="content" >
+             <div id="haxe:tracexx" style="font-family:monospace; font-size:11px" ></div>
+		</div>
+		<script type="text/javascript" src="js/unit-tests.js"></script>
+		<hr />
+
+<table style="background-color:white; width:100%;">
+
+    <tr><td style="vertical-align: top;">
+<textarea cols="80" rows="15" id="theory" style="font-family:menlo,courier">
+</textarea>
+</td>
+<td style="vertical-align: top;" id="example-buttons" > </td>
+</tr>
+<tr><td style="vertical-align: top;">
+<textarea cols="80" rows="2" id="query" style="font-family:inconsolata-dz,menlo,courier"> </textarea>
+</td>
+<td style="text-align: left; width:100%;">
+<input type="submit" value="Query" onclick="query(1)" />
+<br />
+<input type="submit" value="Trace" onclick="query(2)" />
+<br />
+<input type="submit" value="Stepper" onclick="query(3)" />
+</td>
+</tr>
+</table>
+<hr />
+<div id="results"></div>
+<div id="stepper"></div>
+<script>
+
+document.getElementById('example-buttons').innerHTML = blub.prolog.tests.ExampleTheories.makeButtons( 'theory', 'query' );
+
+var resdiv = document.getElementById('results');
+function setResult( text ) {
+	resdiv.innerHTML = text;
+}
+
+var htmlstepper;
+
+function showResults( results, ellapsed ) {
+	var s;
+    setResult( "" );
+
+    if( results.length == 0 ) {
+        s = "<p style='color:red'>FAIL in " + ellapsed + " secs</p>";
+    }
+    else {
+        s = "<p style='color:green'>SUCCESS in " + ellapsed + " secs</p>";
+        
+        if( blub.prolog.ResultUtil.getBindings( results[0] ) ) {
+            s += "<hr /><table cellspacing='3'><tr>";
+            var keys = [];        
+            for( var ks = blub.prolog.ResultUtil.getBindings( results[0] ).keys(); ks.hasNext(); ) keys.push( ks.next() );
+            
+            for( i=0; i < keys.length; i++ ) {
+                s += "<td style='background-color:silver'>" + keys[i] + "</td>";
+            }
+            s += "</tr>";
+            
+            for( i = 0; i < results.length; i++ ) {
+                s += "<tr>";
+                
+                var binds = blub.prolog.ResultUtil.getBindings( results[i] );
+                for( j = 0; j < keys.length; j++ ) {
+                    s += "<td style='background-color:#eeeeee'>" + binds.get(keys[j]) + "</td>";
+                }
+                
+                s += "</tr>";
+            }
+            
+            s += "</table>";
+        }
+    }	
+    
+    setResult( s );
+}
+
+function query(action) {	
+	if( action == 3 ) {
+		blub.prolog.debug.HtmlStepper.show();
+	}
+	else {
+		blub.prolog.debug.HtmlStepper.hide();
+	}
+	
+	var doTrace = (action == 2);
+	
+    var db     = new blub.prolog.Database();    
+    var theory = document.getElementById('theory').value;
+    var qry    = document.getElementById('query').value;    
+
+//    var macros  = document.getElementById('macros').value;
+//    db.preprocessor.macroDatabase.loadString( macros );
+    
+    setResult( "" );
+    
+    try {    
+        db.loadString( theory );
+        var queryTerm = blub.prolog.terms.TermParse.parse( qry, db.context, db.operators );
+        var query     = new blub.prolog.Query( db, queryTerm, true, true );
+        query.traceQuery = doTrace;
+    
+        if( action == 3 ) {
+        	htmlstepper = new blub.prolog.debug.HtmlStepper( query );
+        	return;
+        }
+        htmlstepper = null;
+        
+        var start = blub.prolog.Query.timestamp();        
+        var results = query.allSolutions();
+        var ellapsed = blub.prolog.Query.timestamp() - start;
+        
+        showResults( results, ellapsed );
+    }
+    catch( e ) {
+    	setResult( "<p style='color:red'>Exception: " + e + "</p>" );
+    }
+}
+</script>
+</body>		
+</html>
+

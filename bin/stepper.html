@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<title>Stepper</title>
+
+<link rel='stylesheet' type='text/css' href='stepper.css' />
+
+</head>
+<body>
+
+    <table cellspacing='1' >
+        <tr>
+            <td class='flag'>isHalted: <span id='ishalted' class='flag-value'>false</span></td>
+            <td class='flag'>solutionFound: <span id='solnfnd' class='flag-value'>false</span></td>
+            <td class='flag'  colspan='3'>context: <span id='context' class='flag-value'>foo(bar)</span></td>
+        </tr>
+        <tr>
+            <td class='envcell' >Environment: </td>
+            <td class='env-value' id='env' colspan='4'>ENVIRONMENT</td>
+        </tr>
+        <tr>
+            <td class='envcell' >Arguments: </td>
+            <td class='env-value' id='args' colspan='4'>ARGUMENTS</td>
+        </tr>
+        <tr>
+            <td class='stack-title'>Code</td>
+            <td class='stack-title'>Stack</td>
+            <td class='stack-title'>Choices</td>
+            <td class='stack-title'>Cut Barriers</td>
+            <td class='stack-title'>Bindings</td>
+        </tr>    
+        <tr>
+            <td class='stack-cell' id='code-stack'>
+                <table cellspacing='1'>
+                    <tr><td class='instruction stack-item'>asdasdas</td></tr>
+                    <tr><td class='instruction stack-item'>asd adasd a</td></tr>
+                    <tr><td class='instruction stack-item'>asdasd as</td></tr>
+                    <tr><td class='instruction stack-item'>asdasdaqcads</td></tr>
+                    <tr><td class='instruction stack-item'>asda asd as</td></tr>
+                    <tr><td class='instruction stack-item'>asd asdas</td></tr>
+                </table>
+            </td>
+            <td class='stack-cell' id='env-stack'>
+                <table cellspacing='1'>
+                    <tr><td class='code-frame stack-item'>asdasdas</td></tr>
+                    <tr><td class='code-frame stack-item'>asd adasd a</td></tr>
+                    <tr><td class='code-frame stack-item'>asdasd as</td></tr>
+                </table>
+            </td>
+            <td class='stack-cell' id='choice-stack'>
+                <table cellspacing='1'>
+                    <tr><td class='choicepoint stack-item'>asdasdas</td></tr>
+                    <tr><td class='choicepoint stack-item'>asd adasd a</td></tr>
+                </table>
+            </td>
+            <td class='stack-cell' id='cut-stack'>
+                <table cellspacing='1'>
+                    <tr><td class='cut-barrier stack-item'>asdasdas</td></tr>
+                    <tr><td class='cut-barrier stack-item'>asd adasd a</td></tr>
+                    <tr><td class='cut-barrier stack-item'>asdasd as</td></tr>
+                    <tr><td class='cut-barrier stack-item'>asdasdaqcads</td></tr>
+                </table>
+            </td>
+            <td class='stack-cell' id='binding-stack'>
+                <table cellspacing='1'>
+                    <tr><td class='binding stack-item'>asdasdas</td></tr>
+                    <tr><td class='binding stack-item'>asd adasd a</td></tr>
+                    <tr><td class='binding stack-item'>asdasd as</td></tr>
+                </table>
+            </td>
+        </tr>    
+        <tr>
+            <td colspan='5' style='text-align: center'>
+                <input type='submit' value='STEP' onclick='htmlstepper.step()' />
+            </td>
+        </tr>    
+    </table>
+
+</body>
+</html>
