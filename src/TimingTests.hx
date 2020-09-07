@@ -1,3 +1,4 @@
+import js.Browser;
 import blub.prolog.Database;
 import blub.prolog.Query;
 import blub.prolog.Result;
@@ -29,29 +30,46 @@ class TimingTests {
 	}
 
     public static function clear() {
-	    // haxe.Log.clear();	
+        #if js
+        final traceDiv = Browser.document.getElementById("haxe:trace");
+        while(true) {
+            final child = traceDiv.firstChild;
+            if(child == null) break;
+            traceDiv.removeChild(child);
+        }        
+        #end
 	}
 
     public static function stressTestQueens( count:Int ) {
-        stressTest( queens_theory, "run_queens", count );
+        trace('Running 8 Queens * $count ...');
+        final solutions = stressTest( queens_theory, "run_queens", count );
+        if(count == 1) {
+            trace( "solution count = " + solutions.length );
+            for( solution in solutions ) {
+                trace( solution.toString() );           
+            }
+        }
 	}
 
     public static function stressTestZebra( count:Int ) {
+        trace('Running Zebra * $count ...');
         stressTest( zebra_theory, "zebra", count );
     }
 	
-	static function stressTest( theory:String, predName:String, count:Int ) {
+	static function stressTest( theory:String, predName:String, count:Int ): Array<Term> {
 		var test = new TimingTests( theory );
             
 		var time = 0.0;
-		
+        var solutions: Array<Term> = [];
+
 		for( i in 0...count ) {	
             var timestamp = haxe.Timer.stamp();
-            var solutions = test.run( predName );
+            solutions = test.run( predName );
             time += haxe.Timer.stamp() - timestamp;           
 		}
 		
-		trace( "Average time = " + (time/count) );
+        trace( "Average time = " + (time/count) );
+        return solutions;
 	}
 	
     public function run( predName:String ):Array<Term> {		
@@ -68,7 +86,15 @@ class TimingTests {
 	}
 
     public static function main() {
-        trace( "hello" );
+        #if js
+        haxe.Log.trace = function(v:Dynamic, ?infos:haxe.PosInfos) {
+            final traceDiv = Browser.document.getElementById("haxe:trace");
+            final logLine = Browser.document.createParagraphElement();
+            logLine.innerText = '${infos.className}[${infos.lineNumber}]: $v';
+            logLine.className = "log-line";
+            traceDiv.appendChild(logLine);
+        }
+        #end
 
         #if !(cpp)
         haxe.Timer.delay( function() {
