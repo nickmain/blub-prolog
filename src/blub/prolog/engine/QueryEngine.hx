@@ -49,7 +49,7 @@ class QueryEngine implements BindingTrail {
     #end
 	
 	public var database    (default,null):Database;
-    public var arithmetic  (get_arithmetic,null):ArithmeticEvaluator;
+    public var arithmetic  (get,null):ArithmeticEvaluator;
     public var isHalted    (default,null):Bool;
 	
 	/** Whether a breakpoint has been reached */

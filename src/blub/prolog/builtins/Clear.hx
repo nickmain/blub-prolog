@@ -15,6 +15,6 @@ class Clear extends BuiltinPredicate {
 	}
 	
 	override function execute( engine:QueryEngine, args:Array<Term> ) {
-        haxe.Log.clear();
+        // haxe.Log.clear();
 	}
 }

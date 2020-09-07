@@ -21,7 +21,7 @@ class Reference implements ValueTerm {
 
     static var nameGen:Int = 0;
 
-    public var name (get_name,null):String;
+    public var name (get,null):String;
     public var reference (default,null):ValueTerm;
 
     public function new( ?name:String ) {

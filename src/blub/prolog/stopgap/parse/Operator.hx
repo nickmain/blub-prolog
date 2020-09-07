@@ -41,7 +41,7 @@ class Operator {
     }
 
     /** Get the right specifier - either x or y, null if none */
-    public var rightSpec(get_rightSpec,null):Specifier;
+    public var rightSpec(get,null):Specifier;
     function get_rightSpec() {
         return switch( spec ) {
             case op_xf, op_yf         : null;
@@ -51,7 +51,7 @@ class Operator {
     }
 
     /** Get the left specifier - either x or y, null if none */
-    public var leftSpec(get_leftSpec,null):Specifier;
+    public var leftSpec(get,null):Specifier;
     function get_leftSpec() {
         return switch( spec ) {
             case op_fy, op_fx         : null;

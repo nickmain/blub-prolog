@@ -29,7 +29,7 @@ class TimingTests {
 	}
 
     public static function clear() {
-	    haxe.Log.clear();	
+	    // haxe.Log.clear();	
 	}
 
     public static function stressTestQueens( count:Int ) {

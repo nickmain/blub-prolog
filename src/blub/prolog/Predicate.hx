@@ -25,7 +25,7 @@ class PredicateIndicator {
     public var arity(default,null):Int; 
 	
 	/** The indicator as a structure of the form /(name,arity) */
-    public var term (get_term,null):Structure; 
+    public var term (get,null):Structure; 
 	
 	public function new( name:Atom, arity:Int ) { 
 		this.name = name;

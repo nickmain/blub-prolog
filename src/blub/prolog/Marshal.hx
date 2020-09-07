@@ -1,5 +1,6 @@
 package blub.prolog;
 
+import haxe.ds.StringMap;
 import blub.prolog.terms.Term;
 import blub.prolog.terms.Atom;
 import blub.prolog.terms.NumberTerm;
@@ -32,7 +33,7 @@ class Marshal {
      * String to atom with text of the string (and the string as object payload).
      * Others to atom with value as object payload.
      */
-    public static function valueToTerm( value:Dynamic ):ValueTerm {
+    public static function valueToTerm( value:Any ):ValueTerm {
 		if( value == null ) return AtomContext.GLOBALS.getAtom( "null" );
 
         if( Std.is( value, Term ) ) {
@@ -60,9 +61,9 @@ class Marshal {
 			return Structure.makeList( terms );
 		}
 		
-		if( Std.is( value, Map ) ) {
+		if( Std.is( value, StringMap ) ) {
 		    var hashAtom = newAtom();
-			var hash:Map<String,Dynamic> = cast value;
+			var hash:StringMap<Any> = cast value;
 			hashAtom.object =  new blub.prolog.builtins.objects.HashObjectWrapper( hashAtom, hash );
 			return hashAtom;
 		}
@@ -96,7 +97,7 @@ class Marshal {
      * Unbound var/ref to null.
      * Others to toString.
      */
-    public static function termToValue( term:ValueTerm ):Dynamic {
+    public static function termToValue( term:ValueTerm ):Any {
         if( term == null ) return null;
 		
 		var atom = term.asAtom();

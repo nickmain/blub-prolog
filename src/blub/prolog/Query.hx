@@ -39,13 +39,13 @@ class Query {
 
     /** Compiled code */
 	var _code:OperationList;
-    public var code(get_code,null):OperationList;
+    public var code(get,null):OperationList;
 
     public var environment     (default,null):TermEnvironment;
     public var variableContext (default,null):VariableContext;
 
     var _engine:QueryEngine;
-    public var engine (get_engine,null):QueryEngine;
+    public var engine (get,null):QueryEngine;
 
 	/** Get a timestamp - here to allow JS to access haxe.Timer */
 	public static function timestamp():Float {

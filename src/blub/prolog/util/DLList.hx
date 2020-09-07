@@ -37,11 +37,11 @@ class EntryDeletionListener<T> implements DLListListener<T> {
  */
 class DLList<T> {
     
-    public var first(get_first,null):Entry<T>;
-    public var last (get_last ,null):Entry<T>;
+    public var first(get,null):Entry<T>;
+    public var last (get,null):Entry<T>;
     public var size (default,null):Int;
-    public var items(get_items,null):Iterator<T>;
-    public var entries(get_entries,null):Iterator<Entry<T>>;
+    public var items(get,null):Iterator<T>;
+    public var entries(get,null):Iterator<Entry<T>>;
     
     var _first:EntryImpl<T>;
     var _last :EntryImpl<T>;
@@ -189,8 +189,8 @@ typedef ListInternals<T> = {
 interface Entry<T> {
     public var item(default,null):T;
     
-    public var prev(get_prev,null):Entry<T>;
-    public var next(get_next,null):Entry<T>;
+    public var prev(get,null):Entry<T>;
+    public var next(get,null):Entry<T>;
     
 	/** null if removed from list */
 	public var list(default,null):DLList<T>;
@@ -250,8 +250,8 @@ private class EntryIter<T> {
 
 private class EntryImpl<T> implements Entry<T> {
     public var item(default,null):T;
-    public var prev(get_prev,null):Entry<T>;
-    public var next(get_next,null):Entry<T>;
+    public var prev(get,null):Entry<T>;
+    public var next(get,null):Entry<T>;
     
     public var list(default,null):DLList<T>;
 	

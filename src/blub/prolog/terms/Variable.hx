@@ -14,7 +14,7 @@ class Variable implements Term {
     public var index(default,null):Int;	
 	
     var _name:String;
-    public var name(get_name,null):String;
+    public var name(get,null):String;
 
     public function new( ?name:String ) {
        _name = name;

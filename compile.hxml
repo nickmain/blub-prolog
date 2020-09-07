@@ -16,16 +16,16 @@
 -resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
 -resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
 
---next
+#--next
 
--js bin/js/unit-tests.js
--main blub.prolog.tests.UnitTests 
--dce no
--cp src
+#-js bin/js/unit-tests.js
+#-main blub.prolog.tests.UnitTests 
+#-dce no
+#-cp src
 
--D query_trace
--D compile_dump
--D include_asm
+#-D query_trace
+#-D compile_dump
+#-D include_asm
 
--resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
--resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+#-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+#-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog

@@ -17,7 +17,7 @@ class VariableContext {
     public var root (default,null):Structure;
 
     /** The number of variables */
-    public var count (get_count,null):Int;
+    public var count (get,null):Int;
 
     var name2var :Map<String,Variable>;
 	var index2var:Array<Variable>;

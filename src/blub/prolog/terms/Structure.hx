@@ -25,7 +25,7 @@ class Structure implements ClauseTerm
 	var hasRefs:Bool;
     public var varContext:VariableContext;
 
-    public var variableContext (get_variableContext, null):VariableContext;
+    public var variableContext (get, null):VariableContext;
 
     public function new( name:Atom, ?arguments:Array<Term> ) {
        atom = name;
