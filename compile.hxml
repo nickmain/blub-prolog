@@ -16,6 +16,49 @@
 -resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
 -resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
 
+--next
+
+-python bin/app.py
+-main TimingTests
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+
+--next
+
+-lua bin/app.lua
+-main TimingTests
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+
+
+--next
+
+--jvm bin/app.jar
+--main TimingTests
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+
+--next
+
+--hl bin/app.hl
+--main TimingTests
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+
+
+
 #--next
 
 #-js bin/js/unit-tests.js
