@@ -12,7 +12,7 @@ queens([ Row/Col | Rest]) :-                 % otherwise, for each row
                                              % the columns are all tried, when fail back to
                                              % previous row
  
-safe(Anything, []).                          % the empty board is always safe
+safe(_, []).                                 % the empty board is always safe
  
 safe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next row down
             Col =\\= Col1,                   % same column?
@@ -20,7 +20,7 @@ safe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next r
             Col1 - Col =\\= Row - Row1,
             safe(Row/Col, Rest).             % no attack on next row, try the rest of board
   
-board([1/C1, 2/C2, 3/C3, 4/C4, 5/C5, 6/C6, 7/C7, 8/C8]).  % prototype board
+board([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).  % prototype board
 
 run_queens(B) :- board(B),queens(B).
 ";

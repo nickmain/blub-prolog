@@ -74,14 +74,14 @@ class Marshal {
         atom.object = 
 		#if js
 		    new blub.prolog.builtins.objects.JavascriptObjectWrapper( value, atom );
-		#end
-        #if flash
+		#elseif flash
             new blub.prolog.builtins.objects.FlashObjectWrapper( value, atom );
-        #end
-        #if java
+		#elseif java
             new blub.prolog.builtins.objects.JavaObjectWrapper( value, atom );
-        #end
-		
+		#else
+			null;
+		#end
+
         return atom;		
 	}
 

@@ -1,4 +1,3 @@
-import js.Browser;
 import blub.prolog.Database;
 import blub.prolog.Query;
 import blub.prolog.Result;
@@ -29,9 +28,13 @@ class TimingTests {
 		db.loadString( theory, true );
 	}
 
+    public static function log(v:Dynamic) {
+        trace(v);
+    }
+
     public static function clear() {
         #if js
-        final traceDiv = Browser.document.getElementById("haxe:trace");
+        final traceDiv = js.Browser.document.getElementById("haxe:trace");
         while(true) {
             final child = traceDiv.firstChild;
             if(child == null) break;
@@ -57,20 +60,20 @@ class TimingTests {
     }
 	
 	static function stressTest( theory:String, predName:String, count:Int ): Array<Term> {
-		var test = new TimingTests( theory );
-            
-		var time = 0.0;
+        var test = new TimingTests( theory );
+        
+        var time = 0.0;
         var solutions: Array<Term> = [];
 
-		for( i in 0...count ) {	
+        for( i in 0...count ) {	
             var timestamp = haxe.Timer.stamp();
             solutions = test.run( predName );
             time += haxe.Timer.stamp() - timestamp;           
-		}
-		
+        }
+        
         trace( "Average time = " + (time/count) );
         return solutions;
-	}
+    }
 	
     public function run( predName:String ):Array<Term> {		
 		
@@ -88,8 +91,8 @@ class TimingTests {
     public static function main() {
         #if js
         haxe.Log.trace = function(v:Dynamic, ?infos:haxe.PosInfos) {
-            final traceDiv = Browser.document.getElementById("haxe:trace");
-            final logLine = Browser.document.createParagraphElement();
+            final traceDiv = js.Browser.document.getElementById("haxe:trace");
+            final logLine = js.Browser.document.createParagraphElement();
             logLine.innerText = '${infos.className}[${infos.lineNumber}]: $v';
             logLine.className = "log-line";
             traceDiv.appendChild(logLine);
