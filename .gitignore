@@ -1,5 +1,6 @@
 # Build and Release Folders
-bin/js/*.js
+bin/hashlink
+bin/cpp
 
 # Other files and folders
 .settings/

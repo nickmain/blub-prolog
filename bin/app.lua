@@ -361,14 +361,6 @@ __blub_prolog_terms__Structure_ListIterator = _hx_e()
 __blub_prolog_terms_TermParse = _hx_e()
 __blub_prolog_terms_Variable = _hx_e()
 __blub_prolog_terms_VariableContext = _hx_e()
-__blub_prolog_util_DLListListener = _hx_e()
-__blub_prolog_util_TailIterable = _hx_e()
-__blub_prolog_util_EntryDeletionListener = _hx_e()
-__blub_prolog_util_DLList = _hx_e()
-__blub_prolog_util_Entry = _hx_e()
-__blub_prolog_util__DLList_ItemIter = _hx_e()
-__blub_prolog_util__DLList_EntryIter = _hx_e()
-__blub_prolog_util__DLList_EntryImpl = _hx_e()
 __haxe_StackItem = _hx_e()
 __haxe__CallStack_CallStack_Impl_ = _hx_e()
 __haxe_IMap = _hx_e()
@@ -2961,22 +2953,19 @@ TimingTests.clear = function()
 end
 TimingTests.stressTestQueens = function(count) 
   __haxe_Log.trace(Std.string(Std.string("Running 8 Queens * ") .. Std.string(count)) .. Std.string(" ..."), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=47,className="TimingTests",methodName="stressTestQueens"}));
-  local run = function() 
-    local solutions = TimingTests.stressTest(TimingTests.queens_theory, "run_queens", count);
-    if (count == 1) then 
-      __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=52,className="TimingTests",methodName="stressTestQueens"}));
-      local _g = 0;
-      while (_g < solutions.length) do 
-        local solution = solutions[_g];
-        _g = _g + 1;
-        __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=54,className="TimingTests",methodName="stressTestQueens"}));
-      end;
+  local solutions = TimingTests.stressTest(TimingTests.queens_theory, "run_queens", count);
+  if (count == 1) then 
+    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=50,className="TimingTests",methodName="stressTestQueens"}));
+    local _g = 0;
+    while (_g < solutions.length) do 
+      local solution = solutions[_g];
+      _g = _g + 1;
+      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=52,className="TimingTests",methodName="stressTestQueens"}));
     end;
   end;
-  run();
 end
 TimingTests.stressTestZebra = function(count) 
-  __haxe_Log.trace(Std.string(Std.string("Running Zebra * ") .. Std.string(count)) .. Std.string(" ..."), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=67,className="TimingTests",methodName="stressTestZebra"}));
+  __haxe_Log.trace(Std.string(Std.string("Running Zebra * ") .. Std.string(count)) .. Std.string(" ..."), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=58,className="TimingTests",methodName="stressTestZebra"}));
   TimingTests.stressTest(TimingTests.zebra_theory, "zebra", count);
 end
 TimingTests.stressTest = function(theory,predName,count) 
@@ -2992,33 +2981,33 @@ TimingTests.stressTest = function(theory,predName,count)
     solutions = test:run(predName);
     time = time + (Sys.time() - timestamp);
   end;
-  __haxe_Log.trace(Std.string("Average time = ") .. Std.string(time / count), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=83,className="TimingTests",methodName="stressTest"}));
+  __haxe_Log.trace(Std.string("Average time = ") .. Std.string(time / count), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=74,className="TimingTests",methodName="stressTest"}));
   do return solutions end;
 end
 TimingTests.main = function() 
   __haxe_Timer.delay(function() 
-    __haxe_Log.trace("Starting....", _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=116,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace("Starting....", _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=107,className="TimingTests",methodName="main"}));
     local zebra = TimingTests.new(TimingTests.zebra_theory);
     local timestamp = Sys.time();
     local solutions = zebra:run("zebra");
-    __haxe_Log.trace(Std.string(Std.string("Zebra in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=120,className="TimingTests",methodName="main"}));
-    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=121,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string(Std.string("Zebra in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=111,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=112,className="TimingTests",methodName="main"}));
     local _g = 0;
     while (_g < solutions.length) do 
       local solution = solutions[_g];
       _g = _g + 1;
-      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=123,className="TimingTests",methodName="main"}));
+      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=114,className="TimingTests",methodName="main"}));
     end;
     local queens = TimingTests.new(TimingTests.queens_theory);
     timestamp = Sys.time();
     local solutions = queens:run("run_queens");
-    __haxe_Log.trace(Std.string(Std.string("8 queens in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=130,className="TimingTests",methodName="main"}));
-    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=131,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string(Std.string("8 queens in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=121,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=122,className="TimingTests",methodName="main"}));
     local _g = 0;
     while (_g < solutions.length) do 
       local solution = solutions[_g];
       _g = _g + 1;
-      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=136,className="TimingTests",methodName="main"}));
+      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=127,className="TimingTests",methodName="main"}));
     end;
   end, 500);
 end
@@ -8295,7 +8284,6 @@ end
 __blub_prolog_builtins_async_messages_MessageChannel.super = function(self,name,channels) 
   self.name = name;
   self.channels = channels;
-  self.listeners = __blub_prolog_util_DLList.new();
   channels.h[name] = self;
 end
 _hxClasses["blub.prolog.builtins.async.messages.MessageChannel"] = __blub_prolog_builtins_async_messages_MessageChannel
@@ -8303,33 +8291,15 @@ __blub_prolog_builtins_async_messages_MessageChannel.__name__ = "blub.prolog.bui
 __blub_prolog_builtins_async_messages_MessageChannel.prototype = _hx_e();
 __blub_prolog_builtins_async_messages_MessageChannel.prototype.name= nil;
 __blub_prolog_builtins_async_messages_MessageChannel.prototype.channels= nil;
-__blub_prolog_builtins_async_messages_MessageChannel.prototype.listeners= nil;
 __blub_prolog_builtins_async_messages_MessageChannel.prototype.listen = function(self,engine,term) 
-  do return self.listeners:append(__blub_prolog_builtins_async_messages_MessageListener.new(engine, term)) end
+  do return nil end
 end
 __blub_prolog_builtins_async_messages_MessageChannel.prototype.unlisten = function(self,token) 
   if (token == nil) then 
     do return end;
   end;
-  if (__lua_Boot.__instanceof(token, __blub_prolog_util_Entry)) then 
-    local entry = token;
-    token:remove();
-    if (self.listeners.size == 0) then 
-      self.channels:remove(self.name);
-    end;
-  end;
 end
 __blub_prolog_builtins_async_messages_MessageChannel.prototype.send = function(self,msg) 
-  local listener = self.listeners:get_entries();
-  while (listener:hasNext()) do 
-    local listener = listener:next();
-    if (listener.item:receive(msg)) then 
-      listener:remove();
-    end;
-  end;
-  if (self.listeners.size == 0) then 
-    self.channels:remove(self.name);
-  end;
 end
 
 __blub_prolog_builtins_async_messages_MessageChannel.prototype.__class__ =  __blub_prolog_builtins_async_messages_MessageChannel
@@ -8520,43 +8490,14 @@ end
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype = _hx_e();
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.atom= nil;
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.object= nil;
-__blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.listeners= nil;
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.getProperty = function(self,name) 
   do return Reflect.field(self.object, name) end
 end
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.setProperty_final = function(self,name,value) 
-  local oldValue = (function() 
-    local _hx_1
-    if ((self.listeners ~= nil) and (self.listeners.size > 0)) then 
-    _hx_1 = self:getProperty(name); else 
-    _hx_1 = nil; end
-    return _hx_1
-  end )();
   self.object[name] = value;
-  if (self.listeners ~= nil) then 
-    local listener = self.listeners:iterator();
-    while (listener:hasNext()) do 
-      local listener = listener:next();
-      listener:propertyChanged(self, self.atom, name, oldValue, value);
-    end;
-  end;
 end
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.setProperty = function(self,name,value) 
-  local oldValue = (function() 
-    local _hx_1
-    if ((self.listeners ~= nil) and (self.listeners.size > 0)) then 
-    _hx_1 = self:getProperty(name); else 
-    _hx_1 = nil; end
-    return _hx_1
-  end )();
   self:set(name, value);
-  if (self.listeners ~= nil) then 
-    local listener = self.listeners:iterator();
-    while (listener:hasNext()) do 
-      local listener = listener:next();
-      listener:propertyChanged(self, self.atom, name, oldValue, value);
-    end;
-  end;
 end
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.set = function(self,name,value) 
   self.object[name] = value;
@@ -8571,20 +8512,12 @@ __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.getObject = function(
   do return self.object end
 end
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.addPropListener = function(self,listener) 
-  if (self.listeners == nil) then 
-    self.listeners = __blub_prolog_util_DLList.new();
-  end;
-  do return self.listeners:append(listener) end
+  do return nil end
 end
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.removePropListener = function(self,token) 
   if (token == nil) then 
     do return end;
   end;
-  if (not __lua_Boot.__instanceof(token, __blub_prolog_util_Entry)) then 
-    do return end;
-  end;
-  local entry = token;
-  entry:remove();
 end
 
 __blub_prolog_builtins_objects_ObjectWrapperImpl.prototype.__class__ =  __blub_prolog_builtins_objects_ObjectWrapperImpl
@@ -12538,426 +12471,6 @@ end
 __blub_prolog_terms_VariableContext.prototype.__class__ =  __blub_prolog_terms_VariableContext
 
 __blub_prolog_terms_VariableContext.prototype.__properties__ =  {get_count="get_count"}
-
-__blub_prolog_util_DLListListener.new = {}
-_hxClasses["blub.prolog.util.DLListListener"] = __blub_prolog_util_DLListListener
-__blub_prolog_util_DLListListener.__name__ = "blub.prolog.util.DLListListener"
-__blub_prolog_util_DLListListener.prototype = _hx_e();
-__blub_prolog_util_DLListListener.prototype.entryHasBeenAdded= nil;
-__blub_prolog_util_DLListListener.prototype.entryWillBeRemoved= nil;
-__blub_prolog_util_DLListListener.prototype.listWillBeCleared= nil;
-
-__blub_prolog_util_DLListListener.prototype.__class__ =  __blub_prolog_util_DLListListener
-
-__blub_prolog_util_TailIterable.new = function(list) 
-  local self = _hx_new(__blub_prolog_util_TailIterable.prototype)
-  __blub_prolog_util_TailIterable.super(self,list)
-  return self
-end
-__blub_prolog_util_TailIterable.super = function(self,list) 
-  self.list = list;
-  self.entry = list:get_first();
-end
-_hxClasses["blub.prolog.util.TailIterable"] = __blub_prolog_util_TailIterable
-__blub_prolog_util_TailIterable.__name__ = "blub.prolog.util.TailIterable"
-__blub_prolog_util_TailIterable.prototype = _hx_e();
-__blub_prolog_util_TailIterable.prototype.entry= nil;
-__blub_prolog_util_TailIterable.prototype.list= nil;
-__blub_prolog_util_TailIterable.prototype.iterator = function(self) 
-  do return __blub_prolog_util__DLList_ItemIter.new(self.list, self.entry) end
-end
-
-__blub_prolog_util_TailIterable.prototype.__class__ =  __blub_prolog_util_TailIterable
-
-__blub_prolog_util_EntryDeletionListener.new = function(callBack) 
-  local self = _hx_new(__blub_prolog_util_EntryDeletionListener.prototype)
-  __blub_prolog_util_EntryDeletionListener.super(self,callBack)
-  return self
-end
-__blub_prolog_util_EntryDeletionListener.super = function(self,callBack) 
-  self.callBack = _hx_funcToField(callBack);
-end
-_hxClasses["blub.prolog.util.EntryDeletionListener"] = __blub_prolog_util_EntryDeletionListener
-__blub_prolog_util_EntryDeletionListener.__name__ = "blub.prolog.util.EntryDeletionListener"
-__blub_prolog_util_EntryDeletionListener.__interfaces__ = {__blub_prolog_util_DLListListener}
-__blub_prolog_util_EntryDeletionListener.prototype = _hx_e();
-__blub_prolog_util_EntryDeletionListener.prototype.callBack= nil;
-__blub_prolog_util_EntryDeletionListener.prototype.entryHasBeenAdded = function(self,entry) 
-end
-__blub_prolog_util_EntryDeletionListener.prototype.entryWillBeRemoved = function(self,entry) 
-  self:callBack(entry.item);
-end
-__blub_prolog_util_EntryDeletionListener.prototype.listWillBeCleared = function(self,list) 
-end
-
-__blub_prolog_util_EntryDeletionListener.prototype.__class__ =  __blub_prolog_util_EntryDeletionListener
-
-__blub_prolog_util_DLList.new = function() 
-  local self = _hx_new(__blub_prolog_util_DLList.prototype)
-  __blub_prolog_util_DLList.super(self)
-  return self
-end
-__blub_prolog_util_DLList.super = function(self) 
-  self.size = 0;
-  self.internals = _hx_o({__fields__={remove=true,setFirst=true,setLast=true},remove=function(_,...) return _hx_bind(self,self.removeEntry)(...) end,setFirst=function(_,...) return _hx_bind(self,self.setFirst)(...) end,setLast=function(_,...) return _hx_bind(self,self.setLast)(...) end});
-end
-_hxClasses["blub.prolog.util.DLList"] = __blub_prolog_util_DLList
-__blub_prolog_util_DLList.__name__ = "blub.prolog.util.DLList"
-__blub_prolog_util_DLList.prototype = _hx_e();
-__blub_prolog_util_DLList.prototype.first= nil;
-__blub_prolog_util_DLList.prototype.last= nil;
-__blub_prolog_util_DLList.prototype.size= nil;
-__blub_prolog_util_DLList.prototype.items= nil;
-__blub_prolog_util_DLList.prototype.entries= nil;
-__blub_prolog_util_DLList.prototype._first= nil;
-__blub_prolog_util_DLList.prototype._last= nil;
-__blub_prolog_util_DLList.prototype.listeners= nil;
-__blub_prolog_util_DLList.prototype.internals= nil;
-__blub_prolog_util_DLList.prototype.get_first = function(self) 
-  do return self._first end
-end
-__blub_prolog_util_DLList.prototype.get_last = function(self) 
-  do return self._last end
-end
-__blub_prolog_util_DLList.prototype.listen = function(self,listener) 
-  if (self.listeners == nil) then 
-    self.listeners = Array.new();
-  end;
-  self.listeners:push(listener);
-end
-__blub_prolog_util_DLList.prototype.clear = function(self) 
-  if (self.listeners ~= nil) then 
-    local _g = 0;
-    local _g1 = self.listeners;
-    while (_g < _g1.length) do 
-      local listener = _g1[_g];
-      _g = _g + 1;
-      listener:listWillBeCleared(self);
-    end;
-  end;
-  self.size = 0;
-  self._last = nil;
-  self._first = nil;
-end
-__blub_prolog_util_DLList.prototype.removeFirst = function(self) 
-  if (self._first == nil) then 
-    do return nil end;
-  end;
-  do return self._first:remove() end
-end
-__blub_prolog_util_DLList.prototype.removeLast = function(self) 
-  if (self._last == nil) then 
-    do return nil end;
-  end;
-  do return self._last:remove() end
-end
-__blub_prolog_util_DLList.prototype.remove = function(self,entry) 
-  if ((entry == nil) or (entry.list ~= self)) then 
-    do return nil end;
-  end;
-  do return entry:remove() end
-end
-__blub_prolog_util_DLList.prototype.append = function(self,item) 
-  do return self:insertAfter(item, self._last) end
-end
-__blub_prolog_util_DLList.prototype.prepend = function(self,item) 
-  do return self:insertAfter(item, nil) end
-end
-__blub_prolog_util_DLList.prototype.removeItem = function(self,item) 
-  local e = self:get_entries();
-  while (e:hasNext()) do 
-    local e = e:next();
-    if (e.item == item) then 
-      e:remove();
-      do return true end;
-    end;
-  end;
-  do return false end
-end
-__blub_prolog_util_DLList.prototype.removeEntry = function(self,e) 
-  if (e == nil) then 
-    do return end;
-  end;
-  if (e.list ~= self) then 
-    do return end;
-  end;
-  if (self.listeners ~= nil) then 
-    local _g = 0;
-    local _g1 = self.listeners;
-    while (_g < _g1.length) do 
-      local listener = _g1[_g];
-      _g = _g + 1;
-      listener:entryWillBeRemoved(e);
-    end;
-  end;
-  if (e:get_prev() == nil) then 
-    self._first = e:get_next();
-  end;
-  if (e:get_next() == nil) then 
-    self._last = e:get_prev();
-  end;
-  self.size = self.size - 1;
-end
-__blub_prolog_util_DLList.prototype.insertAfter = function(self,item,entry) 
-  local prev = (function() 
-    local _hx_1
-    if (entry ~= nil) then 
-    _hx_1 = entry; else 
-    _hx_1 = nil; end
-    return _hx_1
-  end )();
-  if ((prev ~= nil) and (prev.list ~= self)) then 
-    do return nil end;
-  end;
-  local next = (function() 
-    local _hx_2
-    if (prev ~= nil) then 
-    _hx_2 = prev:get_next(); else 
-    _hx_2 = self._first; end
-    return _hx_2
-  end )();
-  local entry = __blub_prolog_util__DLList_EntryImpl.new(item, self, prev, next, self.internals);
-  if (prev == nil) then 
-    self._first = entry;
-  end;
-  if (next == nil) then 
-    self._last = entry;
-  end;
-  self.size = self.size + 1;
-  if (self.listeners ~= nil) then 
-    local _g = 0;
-    local _g1 = self.listeners;
-    while (_g < _g1.length) do 
-      local listener = _g1[_g];
-      _g = _g + 1;
-      listener:entryHasBeenAdded(entry);
-    end;
-  end;
-  do return entry end
-end
-__blub_prolog_util_DLList.prototype.iterator = function(self) 
-  do return self:get_items() end
-end
-__blub_prolog_util_DLList.prototype.get_items = function(self) 
-  do return __blub_prolog_util__DLList_ItemIter.new(self) end
-end
-__blub_prolog_util_DLList.prototype.get_entries = function(self) 
-  do return __blub_prolog_util__DLList_EntryIter.new(self) end
-end
-__blub_prolog_util_DLList.prototype.setFirst = function(self,entry) 
-  self._first = entry;
-  if (self._last == nil) then 
-    self._last = entry;
-  end;
-end
-__blub_prolog_util_DLList.prototype.setLast = function(self,entry) 
-  self._last = entry;
-  if (self._first == nil) then 
-    self._first = entry;
-  end;
-end
-__blub_prolog_util_DLList.prototype.toString = function(self) 
-  local buf_b = ({});
-  local buf_length = 0;
-  local str = "[ ";
-  _G.table.insert(buf_b, str);
-  buf_length = buf_length + __lua_lib_luautf8_Utf8.len(str);
-  local first = true;
-  local i = self:get_items();
-  while (i:hasNext()) do 
-    local i = i:next();
-    if (first) then 
-      first = false;
-    else
-      local str = ", ";
-      _G.table.insert(buf_b, str);
-      buf_length = buf_length + __lua_lib_luautf8_Utf8.len(str);
-    end;
-    local str = Std.string(i);
-    _G.table.insert(buf_b, str);
-    buf_length = buf_length + __lua_lib_luautf8_Utf8.len(str);
-  end;
-  local str = " ]";
-  _G.table.insert(buf_b, str);
-  buf_length = buf_length + __lua_lib_luautf8_Utf8.len(str);
-  do return _G.table.concat(buf_b) end
-end
-
-__blub_prolog_util_DLList.prototype.__class__ =  __blub_prolog_util_DLList
-
-__blub_prolog_util_DLList.prototype.__properties__ =  {get_entries="get_entries",get_items="get_items",get_last="get_last",get_first="get_first"}
-
-__blub_prolog_util_Entry.new = {}
-_hxClasses["blub.prolog.util.Entry"] = __blub_prolog_util_Entry
-__blub_prolog_util_Entry.__name__ = "blub.prolog.util.Entry"
-__blub_prolog_util_Entry.prototype = _hx_e();
-__blub_prolog_util_Entry.prototype.item= nil;
-__blub_prolog_util_Entry.prototype.prev= nil;
-__blub_prolog_util_Entry.prototype.next= nil;
-__blub_prolog_util_Entry.prototype.list= nil;
-__blub_prolog_util_Entry.prototype.remove= nil;
-__blub_prolog_util_Entry.prototype.get_prev= nil;
-__blub_prolog_util_Entry.prototype.get_next= nil;
-__blub_prolog_util_Entry.prototype.moveToFirst= nil;
-__blub_prolog_util_Entry.prototype.moveToLast= nil;
-
-__blub_prolog_util_Entry.prototype.__class__ =  __blub_prolog_util_Entry
-
-__blub_prolog_util_Entry.prototype.__properties__ =  {get_next="get_next",get_prev="get_prev"}
-
-__blub_prolog_util__DLList_ItemIter.new = function(list,first) 
-  local self = _hx_new(__blub_prolog_util__DLList_ItemIter.prototype)
-  __blub_prolog_util__DLList_ItemIter.super(self,list,first)
-  return self
-end
-__blub_prolog_util__DLList_ItemIter.super = function(self,list,first) 
-  self.iter = __blub_prolog_util__DLList_EntryIter.new(list, first);
-end
-_hxClasses["blub.prolog.util._DLList.ItemIter"] = __blub_prolog_util__DLList_ItemIter
-__blub_prolog_util__DLList_ItemIter.__name__ = "blub.prolog.util._DLList.ItemIter"
-__blub_prolog_util__DLList_ItemIter.prototype = _hx_e();
-__blub_prolog_util__DLList_ItemIter.prototype.iter= nil;
-__blub_prolog_util__DLList_ItemIter.prototype.hasNext = function(self) 
-  do return self.iter:hasNext() end
-end
-__blub_prolog_util__DLList_ItemIter.prototype.next = function(self) 
-  local entry = self.iter:next();
-  if (entry == nil) then 
-    do return nil end;
-  else
-    do return entry.item end;
-  end;
-end
-
-__blub_prolog_util__DLList_ItemIter.prototype.__class__ =  __blub_prolog_util__DLList_ItemIter
-
-__blub_prolog_util__DLList_EntryIter.new = function(list,first) 
-  local self = _hx_new(__blub_prolog_util__DLList_EntryIter.prototype)
-  __blub_prolog_util__DLList_EntryIter.super(self,list,first)
-  return self
-end
-__blub_prolog_util__DLList_EntryIter.super = function(self,list,first) 
-  self.nextEntry = (function() 
-    local _hx_1
-    if (first == nil) then 
-    _hx_1 = list:get_first(); else 
-    _hx_1 = first; end
-    return _hx_1
-  end )();
-end
-_hxClasses["blub.prolog.util._DLList.EntryIter"] = __blub_prolog_util__DLList_EntryIter
-__blub_prolog_util__DLList_EntryIter.__name__ = "blub.prolog.util._DLList.EntryIter"
-__blub_prolog_util__DLList_EntryIter.prototype = _hx_e();
-__blub_prolog_util__DLList_EntryIter.prototype.nextEntry= nil;
-__blub_prolog_util__DLList_EntryIter.prototype.hasNext = function(self) 
-  self:advanceToLiveEntry();
-  do return self.nextEntry ~= nil end
-end
-__blub_prolog_util__DLList_EntryIter.prototype.advanceToLiveEntry = function(self) 
-  while ((self.nextEntry ~= nil) and (self.nextEntry.list == nil)) do 
-    self.nextEntry = self.nextEntry:get_next();
-  end;
-end
-__blub_prolog_util__DLList_EntryIter.prototype.next = function(self) 
-  self:advanceToLiveEntry();
-  if (self.nextEntry == nil) then 
-    do return nil end;
-  end;
-  local result = self.nextEntry;
-  self.nextEntry = result:get_next();
-  do return result end
-end
-
-__blub_prolog_util__DLList_EntryIter.prototype.__class__ =  __blub_prolog_util__DLList_EntryIter
-
-__blub_prolog_util__DLList_EntryImpl.new = function(item,list,prev,next,internals) 
-  local self = _hx_new(__blub_prolog_util__DLList_EntryImpl.prototype)
-  __blub_prolog_util__DLList_EntryImpl.super(self,item,list,prev,next,internals)
-  return self
-end
-__blub_prolog_util__DLList_EntryImpl.super = function(self,item,list,prev,next,internals) 
-  self.item = item;
-  self.list = list;
-  self._prev = prev;
-  self._next = next;
-  self._internals = internals;
-  if (prev ~= nil) then 
-    prev._next = self;
-  end;
-  if (next ~= nil) then 
-    next._prev = self;
-  end;
-end
-_hxClasses["blub.prolog.util._DLList.EntryImpl"] = __blub_prolog_util__DLList_EntryImpl
-__blub_prolog_util__DLList_EntryImpl.__name__ = "blub.prolog.util._DLList.EntryImpl"
-__blub_prolog_util__DLList_EntryImpl.__interfaces__ = {__blub_prolog_util_Entry}
-__blub_prolog_util__DLList_EntryImpl.prototype = _hx_e();
-__blub_prolog_util__DLList_EntryImpl.prototype.item= nil;
-__blub_prolog_util__DLList_EntryImpl.prototype.prev= nil;
-__blub_prolog_util__DLList_EntryImpl.prototype.next= nil;
-__blub_prolog_util__DLList_EntryImpl.prototype.list= nil;
-__blub_prolog_util__DLList_EntryImpl.prototype._prev= nil;
-__blub_prolog_util__DLList_EntryImpl.prototype._next= nil;
-__blub_prolog_util__DLList_EntryImpl.prototype._internals= nil;
-__blub_prolog_util__DLList_EntryImpl.prototype.get_prev = function(self) 
-  do return self._prev end
-end
-__blub_prolog_util__DLList_EntryImpl.prototype.get_next = function(self) 
-  do return self._next end
-end
-__blub_prolog_util__DLList_EntryImpl.prototype.moveToFirst = function(self) 
-  if (self.list == nil) then 
-    do return end;
-  end;
-  if (self._prev == nil) then 
-    do return end;
-  end;
-  self:yank();
-  self._next = self.list:get_first();
-  self._next._prev = self;
-  self._internals:setFirst(self);
-end
-__blub_prolog_util__DLList_EntryImpl.prototype.moveToLast = function(self) 
-  if (self.list == nil) then 
-    do return end;
-  end;
-  if (self._next == nil) then 
-    do return end;
-  end;
-  self:yank();
-  self._next = nil;
-  self._prev = self.list:get_last();
-  self._prev._next = self;
-  self._internals:setLast(self);
-end
-__blub_prolog_util__DLList_EntryImpl.prototype.yank = function(self) 
-  if (self._prev ~= nil) then 
-    self._prev._next = self._next;
-  else
-    self._internals:setFirst(self._next);
-  end;
-  if (self._next ~= nil) then 
-    self._next._prev = self._prev;
-  else
-    self._internals:setLast(self._prev);
-  end;
-  self._prev = nil;
-end
-__blub_prolog_util__DLList_EntryImpl.prototype.remove = function(self) 
-  if (self.list == nil) then 
-    do return self.item end;
-  end;
-  self._internals:remove(self);
-  self:yank();
-  self.list = nil;
-  local it = self.item;
-  self.item = nil;
-  do return it end
-end
-
-__blub_prolog_util__DLList_EntryImpl.prototype.__class__ =  __blub_prolog_util__DLList_EntryImpl
-
-__blub_prolog_util__DLList_EntryImpl.prototype.__properties__ =  {get_next="get_next",get_prev="get_prev"}
 _hxClasses["haxe.StackItem"] = __haxe_StackItem;
 _hxClasses["haxe.StackItem"] = { __ename__ = "haxe.StackItem", __constructs__ = _hx_tab_array({[0]="CFunction","Module","FilePos","Method","LocalFunction"},5)}
 __haxe_StackItem = _hxClasses["haxe.StackItem"];

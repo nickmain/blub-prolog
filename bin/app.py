@@ -1599,21 +1599,18 @@ class TimingTests:
     @staticmethod
     def stressTestQueens(count):
         haxe_Log.trace((("Running 8 Queens * " + Std.string(count)) + " ..."),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 47, 'className': "TimingTests", 'methodName': "stressTestQueens"}))
-        def _hx_local_1():
-            solutions = TimingTests.stressTest(TimingTests.queens_theory,"run_queens",count)
-            if (count == 1):
-                haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 52, 'className': "TimingTests", 'methodName': "stressTestQueens"}))
-                _g = 0
-                while (_g < len(solutions)):
-                    solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
-                    _g = (_g + 1)
-                    haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 54, 'className': "TimingTests", 'methodName': "stressTestQueens"}))
-        run = _hx_local_1
-        run()
+        solutions = TimingTests.stressTest(TimingTests.queens_theory,"run_queens",count)
+        if (count == 1):
+            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 50, 'className': "TimingTests", 'methodName': "stressTestQueens"}))
+            _g = 0
+            while (_g < len(solutions)):
+                solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
+                _g = (_g + 1)
+                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 52, 'className': "TimingTests", 'methodName': "stressTestQueens"}))
 
     @staticmethod
     def stressTestZebra(count):
-        haxe_Log.trace((("Running Zebra * " + Std.string(count)) + " ..."),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 67, 'className': "TimingTests", 'methodName': "stressTestZebra"}))
+        haxe_Log.trace((("Running Zebra * " + Std.string(count)) + " ..."),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 58, 'className': "TimingTests", 'methodName': "stressTestZebra"}))
         TimingTests.stressTest(TimingTests.zebra_theory,"zebra",count)
 
     @staticmethod
@@ -1629,33 +1626,33 @@ class TimingTests:
             timestamp = python_lib_Timeit.default_timer()
             solutions = test.run(predName)
             time = (time + ((python_lib_Timeit.default_timer() - timestamp)))
-        haxe_Log.trace(("Average time = " + Std.string(((time / count)))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 83, 'className': "TimingTests", 'methodName': "stressTest"}))
+        haxe_Log.trace(("Average time = " + Std.string(((time / count)))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 74, 'className': "TimingTests", 'methodName': "stressTest"}))
         return solutions
 
     @staticmethod
     def main():
         def _hx_local_2():
-            haxe_Log.trace("Starting....",_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 116, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace("Starting....",_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 107, 'className': "TimingTests", 'methodName': "main"}))
             zebra = TimingTests(TimingTests.zebra_theory)
             timestamp = python_lib_Timeit.default_timer()
             solutions = zebra.run("zebra")
-            haxe_Log.trace((("Zebra in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 120, 'className': "TimingTests", 'methodName': "main"}))
-            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 121, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace((("Zebra in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 111, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 112, 'className': "TimingTests", 'methodName': "main"}))
             _g = 0
             while (_g < len(solutions)):
                 solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
                 _g = (_g + 1)
-                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 123, 'className': "TimingTests", 'methodName': "main"}))
+                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 114, 'className': "TimingTests", 'methodName': "main"}))
             queens = TimingTests(TimingTests.queens_theory)
             timestamp = python_lib_Timeit.default_timer()
             solutions = queens.run("run_queens")
-            haxe_Log.trace((("8 queens in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 130, 'className': "TimingTests", 'methodName': "main"}))
-            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 131, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace((("8 queens in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 121, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 122, 'className': "TimingTests", 'methodName': "main"}))
             _g = 0
             while (_g < len(solutions)):
                 solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
                 _g = (_g + 1)
-                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 136, 'className': "TimingTests", 'methodName': "main"}))
+                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 127, 'className': "TimingTests", 'methodName': "main"}))
         haxe_Timer.delay(_hx_local_2,500)
 
     @staticmethod
@@ -6794,42 +6791,29 @@ _hx_classes["blub.prolog.builtins.async.AsyncOperationImpl"] = blub_prolog_built
 
 class blub_prolog_builtins_async_messages_MessageChannel:
     _hx_class_name = "blub.prolog.builtins.async.messages.MessageChannel"
-    __slots__ = ("name", "channels", "listeners")
-    _hx_fields = ["name", "channels", "listeners"]
+    __slots__ = ("name", "channels")
+    _hx_fields = ["name", "channels"]
     _hx_methods = ["listen", "unlisten", "send"]
 
     def __init__(self,name,channels):
         self.name = name
         self.channels = channels
-        self.listeners = blub_prolog_util_DLList()
         channels.h[name] = self
 
     def listen(self,engine,term):
-        return self.listeners.append(blub_prolog_builtins_async_messages_MessageListener(engine,term))
+        return None
 
     def unlisten(self,token):
         if (token is None):
             return
-        if Std.isOfType(token,blub_prolog_util_Entry):
-            entry = token
-            Reflect.field(token,"remove")()
-            if (self.listeners.size == 0):
-                self.channels.remove(self.name)
 
     def send(self,msg):
-        listener = self.listeners.get_entries()
-        while listener.hasNext():
-            listener1 = listener.next()
-            if listener1.item.receive(msg):
-                listener1.remove()
-        if (self.listeners.size == 0):
-            self.channels.remove(self.name)
+        pass
 
     @staticmethod
     def _hx_empty_init(_hx_o):
         _hx_o.name = None
         _hx_o.channels = None
-        _hx_o.listeners = None
 _hx_classes["blub.prolog.builtins.async.messages.MessageChannel"] = blub_prolog_builtins_async_messages_MessageChannel
 
 
@@ -6951,14 +6935,13 @@ _hx_classes["blub.prolog.builtins.objects.ObjectWrapper"] = blub_prolog_builtins
 
 class blub_prolog_builtins_objects_ObjectWrapperImpl:
     _hx_class_name = "blub.prolog.builtins.objects.ObjectWrapperImpl"
-    __slots__ = ("atom", "object", "listeners")
-    _hx_fields = ["atom", "object", "listeners"]
+    __slots__ = ("atom", "object")
+    _hx_fields = ["atom", "object"]
     _hx_methods = ["getProperty", "setProperty_final", "setProperty", "set", "callMethod", "getObject", "addPropListener", "removePropListener"]
     _hx_statics = ["capitalize"]
     _hx_interfaces = [blub_prolog_builtins_objects_ObjectWrapper]
 
     def __init__(self,object,atom):
-        self.listeners = None
         self.object = object
         self.atom = atom
 
@@ -6966,22 +6949,10 @@ class blub_prolog_builtins_objects_ObjectWrapperImpl:
         return Reflect.field(self.object,name)
 
     def setProperty_final(self,name,value):
-        oldValue = (self.getProperty(name) if (((self.listeners is not None) and ((self.listeners.size > 0)))) else None)
         setattr(self.object,(("_hx_" + name) if ((name in python_Boot.keywords)) else (("_hx_" + name) if (((((len(name) > 2) and ((ord(name[0]) == 95))) and ((ord(name[1]) == 95))) and ((ord(name[(len(name) - 1)]) != 95)))) else name)),value)
-        if (self.listeners is not None):
-            listener = self.listeners.iterator()
-            while listener.hasNext():
-                listener1 = listener.next()
-                listener1.propertyChanged(self,self.atom,name,oldValue,value)
 
     def setProperty(self,name,value):
-        oldValue = (self.getProperty(name) if (((self.listeners is not None) and ((self.listeners.size > 0)))) else None)
         self.set(name,value)
-        if (self.listeners is not None):
-            listener = self.listeners.iterator()
-            while listener.hasNext():
-                listener1 = listener.next()
-                listener1.propertyChanged(self,self.atom,name,oldValue,value)
 
     def set(self,name,value):
         setattr(self.object,(("_hx_" + name) if ((name in python_Boot.keywords)) else (("_hx_" + name) if (((((len(name) > 2) and ((ord(name[0]) == 95))) and ((ord(name[1]) == 95))) and ((ord(name[(len(name) - 1)]) != 95)))) else name)),value)
@@ -6995,17 +6966,11 @@ class blub_prolog_builtins_objects_ObjectWrapperImpl:
         return self.object
 
     def addPropListener(self,listener):
-        if (self.listeners is None):
-            self.listeners = blub_prolog_util_DLList()
-        return self.listeners.append(listener)
+        return None
 
     def removePropListener(self,token):
         if (token is None):
             return
-        if (not Std.isOfType(token,blub_prolog_util_Entry)):
-            return
-        entry = token
-        entry.remove()
 
     @staticmethod
     def capitalize(name):
@@ -7017,7 +6982,6 @@ class blub_prolog_builtins_objects_ObjectWrapperImpl:
     def _hx_empty_init(_hx_o):
         _hx_o.atom = None
         _hx_o.object = None
-        _hx_o.listeners = None
 _hx_classes["blub.prolog.builtins.objects.ObjectWrapperImpl"] = blub_prolog_builtins_objects_ObjectWrapperImpl
 
 
@@ -10751,360 +10715,6 @@ class blub_prolog_terms_VariableContext:
         _hx_o.name2var = None
         _hx_o.index2var = None
 _hx_classes["blub.prolog.terms.VariableContext"] = blub_prolog_terms_VariableContext
-
-
-class blub_prolog_util_DLListListener:
-    _hx_class_name = "blub.prolog.util.DLListListener"
-    __slots__ = ()
-    _hx_methods = ["entryHasBeenAdded", "entryWillBeRemoved", "listWillBeCleared"]
-_hx_classes["blub.prolog.util.DLListListener"] = blub_prolog_util_DLListListener
-
-
-class blub_prolog_util_TailIterable:
-    _hx_class_name = "blub.prolog.util.TailIterable"
-    __slots__ = ("entry", "list")
-    _hx_fields = ["entry", "list"]
-    _hx_methods = ["iterator"]
-
-    def __init__(self,_hx_list):
-        self.list = _hx_list
-        self.entry = _hx_list.get_first()
-
-    def iterator(self):
-        return blub_prolog_util__DLList_ItemIter(self.list,self.entry)
-
-    @staticmethod
-    def _hx_empty_init(_hx_o):
-        _hx_o.entry = None
-        _hx_o.list = None
-_hx_classes["blub.prolog.util.TailIterable"] = blub_prolog_util_TailIterable
-
-
-class blub_prolog_util_EntryDeletionListener:
-    _hx_class_name = "blub.prolog.util.EntryDeletionListener"
-    __slots__ = ("callBack",)
-    _hx_fields = ["callBack"]
-    _hx_methods = ["entryHasBeenAdded", "entryWillBeRemoved", "listWillBeCleared"]
-    _hx_interfaces = [blub_prolog_util_DLListListener]
-
-    def __init__(self,callBack):
-        self.callBack = callBack
-
-    def entryHasBeenAdded(self,entry):
-        pass
-
-    def entryWillBeRemoved(self,entry):
-        self.callBack(entry.item)
-
-    def listWillBeCleared(self,_hx_list):
-        pass
-
-    @staticmethod
-    def _hx_empty_init(_hx_o):
-        _hx_o.callBack = None
-_hx_classes["blub.prolog.util.EntryDeletionListener"] = blub_prolog_util_EntryDeletionListener
-
-
-class blub_prolog_util_DLList:
-    _hx_class_name = "blub.prolog.util.DLList"
-    __slots__ = ("first", "last", "size", "items", "entries", "_first", "_last", "listeners", "internals")
-    _hx_fields = ["size", "_first", "_last", "listeners", "internals"]
-    _hx_methods = ["get_first", "get_last", "listen", "clear", "removeFirst", "removeLast", "remove", "append", "prepend", "removeItem", "removeEntry", "insertAfter", "iterator", "get_items", "get_entries", "setFirst", "setLast", "toString"]
-
-    def __init__(self):
-        self.internals = None
-        self.listeners = None
-        self._last = None
-        self._first = None
-        self.entries = None
-        self.items = None
-        self.last = None
-        self.first = None
-        self.size = 0
-        self.internals = _hx_AnonObject({'remove': self.removeEntry, 'setFirst': self.setFirst, 'setLast': self.setLast})
-
-    def get_first(self):
-        return self._first
-
-    def get_last(self):
-        return self._last
-
-    def listen(self,listener):
-        if (self.listeners is None):
-            self.listeners = list()
-        _this = self.listeners
-        _this.append(listener)
-
-    def clear(self):
-        if (self.listeners is not None):
-            _g = 0
-            _g1 = self.listeners
-            while (_g < len(_g1)):
-                listener = (_g1[_g] if _g >= 0 and _g < len(_g1) else None)
-                _g = (_g + 1)
-                listener.listWillBeCleared(self)
-        self.size = 0
-        self._last = None
-        self._first = None
-
-    def removeFirst(self):
-        if (self._first is None):
-            return None
-        return self._first.remove()
-
-    def removeLast(self):
-        if (self._last is None):
-            return None
-        return self._last.remove()
-
-    def remove(self,entry):
-        if ((entry is None) or ((entry.list != self))):
-            return None
-        return entry.remove()
-
-    def append(self,item):
-        return self.insertAfter(item,self._last)
-
-    def prepend(self,item):
-        return self.insertAfter(item,None)
-
-    def removeItem(self,item):
-        e = self.get_entries()
-        while e.hasNext():
-            e1 = e.next()
-            if HxOverrides.eq(e1.item,item):
-                e1.remove()
-                return True
-        return False
-
-    def removeEntry(self,e):
-        if (e is None):
-            return
-        if (e.list != self):
-            return
-        if (self.listeners is not None):
-            _g = 0
-            _g1 = self.listeners
-            while (_g < len(_g1)):
-                listener = (_g1[_g] if _g >= 0 and _g < len(_g1) else None)
-                _g = (_g + 1)
-                listener.entryWillBeRemoved(e)
-        if (e.get_prev() is None):
-            self._first = e.get_next()
-        if (e.get_next() is None):
-            self._last = e.get_prev()
-        _hx_local_1 = self
-        _hx_local_2 = _hx_local_1.size
-        _hx_local_1.size = (_hx_local_2 - 1)
-        _hx_local_2
-
-    def insertAfter(self,item,entry):
-        prev = (entry if ((entry is not None)) else None)
-        if ((prev is not None) and ((prev.list != self))):
-            return None
-        next = (prev.get_next() if ((prev is not None)) else self._first)
-        entry = blub_prolog_util__DLList_EntryImpl(item,self,prev,next,self.internals)
-        if (prev is None):
-            self._first = entry
-        if (next is None):
-            self._last = entry
-        _hx_local_0 = self
-        _hx_local_1 = _hx_local_0.size
-        _hx_local_0.size = (_hx_local_1 + 1)
-        _hx_local_1
-        if (self.listeners is not None):
-            _g = 0
-            _g1 = self.listeners
-            while (_g < len(_g1)):
-                listener = (_g1[_g] if _g >= 0 and _g < len(_g1) else None)
-                _g = (_g + 1)
-                listener.entryHasBeenAdded(entry)
-        return entry
-
-    def iterator(self):
-        return self.get_items()
-
-    def get_items(self):
-        return blub_prolog_util__DLList_ItemIter(self)
-
-    def get_entries(self):
-        return blub_prolog_util__DLList_EntryIter(self)
-
-    def setFirst(self,entry):
-        self._first = entry
-        if (self._last is None):
-            self._last = entry
-
-    def setLast(self,entry):
-        self._last = entry
-        if (self._first is None):
-            self._first = entry
-
-    def toString(self):
-        buf_b = python_lib_io_StringIO()
-        buf_b.write("[ ")
-        first = True
-        i = self.get_items()
-        while i.hasNext():
-            i1 = i.next()
-            if first:
-                first = False
-            else:
-                buf_b.write(", ")
-            buf_b.write(Std.string(Std.string(i1)))
-        buf_b.write(" ]")
-        return buf_b.getvalue()
-
-    @staticmethod
-    def _hx_empty_init(_hx_o):
-        _hx_o.size = None
-        _hx_o._first = None
-        _hx_o._last = None
-        _hx_o.listeners = None
-        _hx_o.internals = None
-_hx_classes["blub.prolog.util.DLList"] = blub_prolog_util_DLList
-
-
-class blub_prolog_util_Entry:
-    _hx_class_name = "blub.prolog.util.Entry"
-    __slots__ = ("item", "prev", "next", "list")
-    _hx_fields = ["item", "list"]
-    _hx_methods = ["remove", "get_prev", "get_next", "moveToFirst", "moveToLast"]
-_hx_classes["blub.prolog.util.Entry"] = blub_prolog_util_Entry
-
-
-class blub_prolog_util__DLList_ItemIter:
-    _hx_class_name = "blub.prolog.util._DLList.ItemIter"
-    __slots__ = ("iter",)
-    _hx_fields = ["iter"]
-    _hx_methods = ["hasNext", "next"]
-
-    def __init__(self,_hx_list,first = None):
-        self.iter = blub_prolog_util__DLList_EntryIter(_hx_list,first)
-
-    def hasNext(self):
-        return self.iter.hasNext()
-
-    def next(self):
-        entry = self.iter.next()
-        if (entry is None):
-            return None
-        else:
-            return entry.item
-
-    @staticmethod
-    def _hx_empty_init(_hx_o):
-        _hx_o.iter = None
-_hx_classes["blub.prolog.util._DLList.ItemIter"] = blub_prolog_util__DLList_ItemIter
-
-
-class blub_prolog_util__DLList_EntryIter:
-    _hx_class_name = "blub.prolog.util._DLList.EntryIter"
-    __slots__ = ("nextEntry",)
-    _hx_fields = ["nextEntry"]
-    _hx_methods = ["hasNext", "advanceToLiveEntry", "next"]
-
-    def __init__(self,_hx_list,first = None):
-        self.nextEntry = (_hx_list.get_first() if ((first is None)) else first)
-
-    def hasNext(self):
-        self.advanceToLiveEntry()
-        return (self.nextEntry is not None)
-
-    def advanceToLiveEntry(self):
-        while ((self.nextEntry is not None) and ((self.nextEntry.list is None))):
-            self.nextEntry = self.nextEntry.get_next()
-
-    def next(self):
-        self.advanceToLiveEntry()
-        if (self.nextEntry is None):
-            return None
-        result = self.nextEntry
-        self.nextEntry = result.get_next()
-        return result
-
-    @staticmethod
-    def _hx_empty_init(_hx_o):
-        _hx_o.nextEntry = None
-_hx_classes["blub.prolog.util._DLList.EntryIter"] = blub_prolog_util__DLList_EntryIter
-
-
-class blub_prolog_util__DLList_EntryImpl:
-    _hx_class_name = "blub.prolog.util._DLList.EntryImpl"
-    __slots__ = ("item", "prev", "next", "list", "_prev", "_next", "_internals")
-    _hx_fields = ["item", "list", "_prev", "_next", "_internals"]
-    _hx_methods = ["get_prev", "get_next", "moveToFirst", "moveToLast", "yank", "remove"]
-    _hx_interfaces = [blub_prolog_util_Entry]
-
-    def __init__(self,item,_hx_list,prev,next,internals):
-        self.next = None
-        self.prev = None
-        self.item = item
-        self.list = _hx_list
-        self._prev = prev
-        self._next = next
-        self._internals = internals
-        if (prev is not None):
-            prev._next = self
-        if (next is not None):
-            next._prev = self
-
-    def get_prev(self):
-        return self._prev
-
-    def get_next(self):
-        return self._next
-
-    def moveToFirst(self):
-        if (self.list is None):
-            return
-        if (self._prev is None):
-            return
-        self.yank()
-        self._next = self.list.get_first()
-        self._next._prev = self
-        self._internals.setFirst(self)
-
-    def moveToLast(self):
-        if (self.list is None):
-            return
-        if (self._next is None):
-            return
-        self.yank()
-        self._next = None
-        self._prev = self.list.get_last()
-        self._prev._next = self
-        self._internals.setLast(self)
-
-    def yank(self):
-        if (self._prev is not None):
-            self._prev._next = self._next
-        else:
-            self._internals.setFirst(self._next)
-        if (self._next is not None):
-            self._next._prev = self._prev
-        else:
-            self._internals.setLast(self._prev)
-        self._prev = None
-
-    def remove(self):
-        if (self.list is None):
-            return self.item
-        self._internals.remove(self)
-        self.yank()
-        self.list = None
-        it = self.item
-        self.item = None
-        return it
-
-    @staticmethod
-    def _hx_empty_init(_hx_o):
-        _hx_o.item = None
-        _hx_o.list = None
-        _hx_o._prev = None
-        _hx_o._next = None
-        _hx_o._internals = None
-_hx_classes["blub.prolog.util._DLList.EntryImpl"] = blub_prolog_util__DLList_EntryImpl
 
 class haxe_StackItem(Enum):
     __slots__ = ()

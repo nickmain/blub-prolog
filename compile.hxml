@@ -1,74 +1,51 @@
--js bin/js/prolog.js
--main Prolog
 -dce no
 -cp src
 
 -resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
 -resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+
+--each
+
+-js bin/js/prolog.js
+-main Prolog
 
 --next
 
 -js bin/js/App.js
 -main TimingTests
--dce no
--cp src
-
--resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
--resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
 
 --next
 
 -python bin/app.py
 -main TimingTests
--dce no
--cp src
-
--resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
--resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
 
 --next
 
 -lua bin/app.lua
 -main TimingTests
--dce no
--cp src
-
--resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
--resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
-
 
 --next
 
 --jvm bin/app.jar
 --main TimingTests
--dce no
--cp src
-
--resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
--resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
 
 --next
 
---hl bin/app.hl
+--interp
 --main TimingTests
--dce no
--cp src
 
--resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
--resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
+#--next
+#--hl bin/hashlink/app.c
+#--main TimingTests
 
-
+#--next
+#--cpp bin/cpp
+#--main TimingTests
 
 #--next
 
 #-js bin/js/unit-tests.js
 #-main blub.prolog.tests.UnitTests 
-#-dce no
-#-cp src
-
 #-D query_trace
 #-D compile_dump
 #-D include_asm
-
-#-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
-#-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog
