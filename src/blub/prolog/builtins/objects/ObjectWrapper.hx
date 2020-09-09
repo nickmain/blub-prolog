@@ -1,7 +1,7 @@
 package blub.prolog.builtins.objects;
 
 import blub.prolog.terms.Atom;
-import blub.prolog.util.DLList;
+// import blub.prolog.util.DLList;
 
 /**
  * A wrapper around an object
@@ -34,7 +34,7 @@ class ObjectWrapperImpl<T> implements ObjectWrapper {
 	
 	var atom:Atom;
 	var object:T;
-	var listeners:DLList<PropertyListener>;
+	// var listeners:DLList<PropertyListener>;
 	
 	function new( object:T, atom:Atom ) { 
 		this.object = object;
@@ -48,34 +48,34 @@ class ObjectWrapperImpl<T> implements ObjectWrapper {
 
     /** Set a property */
     function setProperty_final( name:String, value:Dynamic ):Void {
-        var oldValue =
-            if( listeners != null && listeners.size > 0 ) 
-                getProperty( name )
-                else null;
+        // var oldValue =
+        //     if( listeners != null && listeners.size > 0 ) 
+        //         getProperty( name )
+        //         else null;
         
         Reflect.setField( object, name, value );
         
-        if( listeners != null ) {
-            for( listener in listeners ) {
-                listener.propertyChanged( this, atom, name, oldValue, value );
-            }
-        }
+        // if( listeners != null ) {
+        //     for( listener in listeners ) {
+        //         listener.propertyChanged( this, atom, name, oldValue, value );
+        //     }
+        // }
     }
 
     /** Set a property */
     public function setProperty( name:String, value:Dynamic ):Void {
-		var oldValue =
-            if( listeners != null && listeners.size > 0 ) 
-                getProperty( name )
-				else null;
+		// var oldValue =
+        //     if( listeners != null && listeners.size > 0 ) 
+        //         getProperty( name )
+		// 		else null;
 		
 		set( name, value );
 		
-		if( listeners != null ) {
-			for( listener in listeners ) {
-				listener.propertyChanged( this, atom, name, oldValue, value );
-			}
-		}
+		// if( listeners != null ) {
+		// 	for( listener in listeners ) {
+		// 		listener.propertyChanged( this, atom, name, oldValue, value );
+		// 	}
+		// }
 	}
 
     /**override*/ function set( name:String, value:Dynamic ):Void {
@@ -96,18 +96,18 @@ class ObjectWrapperImpl<T> implements ObjectWrapper {
     
     /** Register a property listener - return the token that can be used to remove it */
     public function addPropListener( listener:PropertyListener ):Dynamic {
-		if( listeners == null ) listeners = new DLList<PropertyListener>();
+		// if( listeners == null ) listeners = new DLList<PropertyListener>();
 		
-		return listeners.append( listener );
+		return  null; //listeners.append( listener );
 	}
     
     /** Unregister a property listener using the token returned from addPropListener */
     public function removePropListener( token:Dynamic ):Void {
 		if( token == null ) return;
-		if( ! Std.is( token, Entry )) return;
+		// if( ! Std.is( token, Entry )) return;
 		
-		var entry:Entry<PropertyListener> = cast token;
-		entry.remove();
+		// var entry:Entry<PropertyListener> = cast token;
+		// entry.remove();
 	}
 	
 	public static function capitalize( name:String ):String {

@@ -225,7 +225,7 @@ private class EntryIter<T> {
     var nextEntry:Entry<T>;
 
     public function new( list:DLList<T>, ?first:Entry<T> ) {
-        nextEntry = if( first == null ) list.first else first;
+       // nextEntry = if( first == null ) list.first else first;
     }
 
     public function hasNext() {
