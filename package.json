@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "compile:HashlinkC": "haxe build/hashlink.hxml",
+        "compile:C++": "haxe build/cpp.hxml"
+    }
+}

@@ -1,0 +1,7 @@
+--hl bin/hashlink/app.c
+--main TimingTests
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog

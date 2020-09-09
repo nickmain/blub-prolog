@@ -1,0 +1,7 @@
+--cpp bin/cpp
+--main TimingTests
+-dce no
+-cp src
+
+-resource theories/ConstraintHandlingRules.prolog@ConstraintHandlingRules.prolog
+-resource theories/DefiniteClauseGrammar.prolog@DefiniteClauseGrammar.prolog

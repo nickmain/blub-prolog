@@ -35,14 +35,6 @@
 --main TimingTests
 
 #--next
-#--hl bin/hashlink/app.c
-#--main TimingTests
-
-#--next
-#--cpp bin/cpp
-#--main TimingTests
-
-#--next
 
 #-js bin/js/unit-tests.js
 #-main blub.prolog.tests.UnitTests 
