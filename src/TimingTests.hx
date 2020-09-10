@@ -54,6 +54,17 @@ class TimingTests {
         }
 	}
 
+    public static function stressTestOKeefeQueens( count:Int ) {
+        trace('Running O\'Keefe 8 Queens * $count ...');
+        final solutions = stressTest( okeefe_queens_theory, "run_queens", count );
+        if(count == 1) {
+            trace( "solution count = " + solutions.length );
+            for( solution in solutions ) {
+                trace( solution.toString() );           
+            }
+        }
+	}
+
     public static function stressTestZebra( count:Int ) {
         trace('Running Zebra * $count ...');
         stressTest( zebra_theory, "zebra", count );
@@ -113,7 +124,9 @@ class TimingTests {
             for( solution in solutions ) {
                 trace( solution.toString() );           
             }
-						
+                        
+            stressTestOKeefeQueens(8);
+            
             var queens = new TimingTests( queens_theory );
             
             timestamp = haxe.Timer.stamp();
@@ -136,6 +149,7 @@ class TimingTests {
     }
 	
 	public static var queens_theory = theories.EightQueens.theory; 
+	public static var okeefe_queens_theory = theories.OKeefe8Queens.theory; 
 	public static var zebra_theory  = theories.Zebra.theory;
 }
 

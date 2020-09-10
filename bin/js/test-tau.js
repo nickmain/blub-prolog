@@ -1,13 +1,37 @@
 var session;
 
-function testTau() {
-    TimingTests.log("Starting Tau Prolog...");
+function testTauOKeefe() {
+    testTauTheory("\
+:- use_module(library(lists)).\
+queens(Queens) :- \
+    board(Queens, Board, 0, 8, _, _), queens(Board, 0, Queens).\
+\
+board([], [], N, N, _, _).\
+board([_|Queens], [Col-Vars|Board], Col0, N, [_|VR], VC) :-\
+    Col is Col0+1,\
+    functor(Vars, f, N),\
+    constraints(N, Vars, VR, VC),\
+    board(Queens, Board, Col, N, VR, [_|VC]).\
+\
+constraints(0, _, _, _) :- !.\
+constraints(N, Row, [R|Rs], [C|Cs]) :-\
+    arg(N, Row, R-C),\
+    M is N-1,\
+    constraints(M, Row, Rs, Cs).\
+\
+queens([], _, []).\
+queens([C|Cs], Row0, [Col|Solution]) :-\
+    Row is Row0+1,\
+    select(Col-Vars, [C|Cs], Board),\
+    arg(Row, Vars, Row-Row),\
+    queens(Board, Row, Solution).\
+\
+run_queens(B) :- B= [_,_,_,_,_,_,_,_], queens(B).\
+");
+}
 
-    if(!session) {
-        session = pl.create(20000);
-    }
-    
-    session.consult("\
+function testTau() {
+    testTauTheory("\
     :- use_module(library(lists)).\
     queens([]).\
     queens([ Row/Col | Rest]) :-\
@@ -22,7 +46,17 @@ function testTau() {
                 safe(Row/Col, Rest).\
     board([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).\
     run_queens(B) :- board(B), queens(B).\
-", {
+");
+}
+
+function testTauTheory(theory) {
+    TimingTests.log("Starting Tau Prolog...");
+
+    if(!session) {
+        session = pl.create(20000);
+    }
+    
+    session.consult(theory, {
     success: function() { 
         TimingTests.log("[Tau]: loaded theory");
 

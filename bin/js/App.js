@@ -818,8 +818,21 @@ TimingTests.stressTestQueens = function(count) {
 		}
 	}
 };
+TimingTests.stressTestOKeefeQueens = function(count) {
+	haxe_Log.trace("Running O'Keefe 8 Queens * " + count + " ...",{ fileName : "src/TimingTests.hx", lineNumber : 58, className : "TimingTests", methodName : "stressTestOKeefeQueens"});
+	var solutions = TimingTests.stressTest(TimingTests.okeefe_queens_theory,"run_queens",count);
+	if(count == 1) {
+		haxe_Log.trace("solution count = " + solutions.length,{ fileName : "src/TimingTests.hx", lineNumber : 61, className : "TimingTests", methodName : "stressTestOKeefeQueens"});
+		var _g = 0;
+		while(_g < solutions.length) {
+			var solution = solutions[_g];
+			++_g;
+			haxe_Log.trace(solution.toString(),{ fileName : "src/TimingTests.hx", lineNumber : 63, className : "TimingTests", methodName : "stressTestOKeefeQueens"});
+		}
+	}
+};
 TimingTests.stressTestZebra = function(count) {
-	haxe_Log.trace("Running Zebra * " + count + " ...",{ fileName : "src/TimingTests.hx", lineNumber : 58, className : "TimingTests", methodName : "stressTestZebra"});
+	haxe_Log.trace("Running Zebra * " + count + " ...",{ fileName : "src/TimingTests.hx", lineNumber : 69, className : "TimingTests", methodName : "stressTestZebra"});
 	TimingTests.stressTest(TimingTests.zebra_theory,"zebra",count);
 };
 TimingTests.stressTest = function(theory,predName,count) {
@@ -834,7 +847,7 @@ TimingTests.stressTest = function(theory,predName,count) {
 		solutions = test.run(predName);
 		time += HxOverrides.now() / 1000 - timestamp;
 	}
-	haxe_Log.trace("Average time = " + time / count,{ fileName : "src/TimingTests.hx", lineNumber : 74, className : "TimingTests", methodName : "stressTest"});
+	haxe_Log.trace("Average time = " + time / count,{ fileName : "src/TimingTests.hx", lineNumber : 85, className : "TimingTests", methodName : "stressTest"});
 	return solutions;
 };
 TimingTests.main = function() {
@@ -846,28 +859,29 @@ TimingTests.main = function() {
 		traceDiv.appendChild(logLine);
 	};
 	haxe_Timer.delay(function() {
-		haxe_Log.trace("Starting....",{ fileName : "src/TimingTests.hx", lineNumber : 107, className : "TimingTests", methodName : "main"});
+		haxe_Log.trace("Starting....",{ fileName : "src/TimingTests.hx", lineNumber : 118, className : "TimingTests", methodName : "main"});
 		var zebra = new TimingTests(TimingTests.zebra_theory);
 		var timestamp = HxOverrides.now() / 1000;
 		var solutions = zebra.run("zebra");
-		haxe_Log.trace("Zebra in " + (HxOverrides.now() / 1000 - timestamp) + " seconds",{ fileName : "src/TimingTests.hx", lineNumber : 111, className : "TimingTests", methodName : "main"});
-		haxe_Log.trace("solution count = " + solutions.length,{ fileName : "src/TimingTests.hx", lineNumber : 112, className : "TimingTests", methodName : "main"});
+		haxe_Log.trace("Zebra in " + (HxOverrides.now() / 1000 - timestamp) + " seconds",{ fileName : "src/TimingTests.hx", lineNumber : 122, className : "TimingTests", methodName : "main"});
+		haxe_Log.trace("solution count = " + solutions.length,{ fileName : "src/TimingTests.hx", lineNumber : 123, className : "TimingTests", methodName : "main"});
 		var _g = 0;
 		while(_g < solutions.length) {
 			var solution = solutions[_g];
 			++_g;
-			haxe_Log.trace(solution.toString(),{ fileName : "src/TimingTests.hx", lineNumber : 114, className : "TimingTests", methodName : "main"});
+			haxe_Log.trace(solution.toString(),{ fileName : "src/TimingTests.hx", lineNumber : 125, className : "TimingTests", methodName : "main"});
 		}
+		TimingTests.stressTestOKeefeQueens(8);
 		var queens = new TimingTests(TimingTests.queens_theory);
 		timestamp = HxOverrides.now() / 1000;
 		var solutions = queens.run("run_queens");
-		haxe_Log.trace("8 queens in " + (HxOverrides.now() / 1000 - timestamp) + " seconds",{ fileName : "src/TimingTests.hx", lineNumber : 121, className : "TimingTests", methodName : "main"});
-		haxe_Log.trace("solution count = " + solutions.length,{ fileName : "src/TimingTests.hx", lineNumber : 122, className : "TimingTests", methodName : "main"});
+		haxe_Log.trace("8 queens in " + (HxOverrides.now() / 1000 - timestamp) + " seconds",{ fileName : "src/TimingTests.hx", lineNumber : 134, className : "TimingTests", methodName : "main"});
+		haxe_Log.trace("solution count = " + solutions.length,{ fileName : "src/TimingTests.hx", lineNumber : 135, className : "TimingTests", methodName : "main"});
 		var _g = 0;
 		while(_g < solutions.length) {
 			var solution = solutions[_g];
 			++_g;
-			haxe_Log.trace(solution.toString(),{ fileName : "src/TimingTests.hx", lineNumber : 127, className : "TimingTests", methodName : "main"});
+			haxe_Log.trace(solution.toString(),{ fileName : "src/TimingTests.hx", lineNumber : 140, className : "TimingTests", methodName : "main"});
 		}
 	},500);
 };
@@ -11807,6 +11821,9 @@ js_lib_ObjectEntry.get_value = function(this1) {
 var theories_EightQueens = function() { };
 $hxClasses["theories.EightQueens"] = theories_EightQueens;
 theories_EightQueens.__name__ = "theories.EightQueens";
+var theories_OKeefe8Queens = function() { };
+$hxClasses["theories.OKeefe8Queens"] = theories_OKeefe8Queens;
+theories_OKeefe8Queens.__name__ = "theories.OKeefe8Queens";
 var theories_Zebra = function() { };
 $hxClasses["theories.Zebra"] = theories_Zebra;
 theories_Zebra.__name__ = "theories.Zebra";
@@ -11840,6 +11857,7 @@ haxe_SysTools.winMetaCharacters = [32,40,41,37,33,94,34,60,62,38,124,10,13,44,59
 StringTools.winMetaCharacters = haxe_SysTools.winMetaCharacters;
 StringTools.MIN_SURROGATE_CODE_POINT = 65536;
 TimingTests.queens_theory = "queens([]).                                  % when place queen in empty list, solution found\n \nqueens([ Row/Col | Rest]) :-                 % otherwise, for each row\n            queens(Rest),                    % place a queen in each higher numbered row\n            member(Col, [1,2,3,4,5,6,7,8]),  % pick one of the possible column positions\n            safe( Row/Col, Rest).            % and see if that is a safe position\n                                             % if not, fail back and try another column, until\n                                             % the columns are all tried, when fail back to\n                                             % previous row\n \nsafe(_, []).                                 % the empty board is always safe\n \nsafe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next row down\n            Col =\\= Col1,                   % same column?\n            Col1 - Col =\\= Row1 - Row,      % check diagonal\n            Col1 - Col =\\= Row - Row1,\n            safe(Row/Col, Rest).             % no attack on next row, try the rest of board\n  \nboard([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).  % prototype board\n\nrun_queens(B) :- board(B),queens(B).\n";
+TimingTests.okeefe_queens_theory = "queens(Queens) :-\n    board(Queens, Board, 0, 8, _, _),\n    queens(Board, 0, Queens).\n\nboard([], [], N, N, _, _).\nboard([_|Queens], [Col-Vars|Board], Col0, N, [_|VR], VC) :-\n    Col is Col0+1,\n    functor(Vars, f, N),\n    constraints(N, Vars, VR, VC),\n    board(Queens, Board, Col, N, VR, [_|VC]).\n\nconstraints(0, _, _, _) :- !.\nconstraints(N, Row, [R|Rs], [C|Cs]) :-\n    arg(N, Row, R-C),\n    M is N-1,\n    constraints(M, Row, Rs, Cs).\n\nqueens([], _, []).\nqueens([C|Cs], Row0, [Col|Solution]) :-\n    Row is Row0+1,\n    select(Col-Vars, [C|Cs], Board),\n    arg(Row, Vars, Row-Row),\n    queens(Board, Row, Solution).\n\nrun_queens(B) :- B= [_,_,_,_,_,_,_,_], queens(B).\n\nselect(X, [Head|Tail], Rest) :-\n    select3_(Tail, Head, X, Rest).\n\nselect3_(Tail, Head, Head, Tail).\nselect3_([Head2|Tail], Head, X, [Head|Rest]) :-\n    select3_(Tail, Head2, X, Rest).\n";
 TimingTests.zebra_theory = "zebra(Owner) :- solve(S),member([_, Owner, zebra, _, _], S).\n\nsolve(S) :-\n    S = [[C1,N1,P1,D1,S1],\n         [C2,N2,P2,D2,S2],\n         [C3,N3,P3,D3,S3],\n         [C4,N4,P4,D4,S4],\n         [C5,N5,P5,D5,S5]],\n    member([red, 'English man', _, _, _], S),\n    member([_, 'Swede', dog, _, _], S),\n    member([_, 'Dane', _, tea, _], S),\n    left_of([green |_], [white |_], S),\n    member([green, _, _, coffee, _], S),\n    member([_, _, birds, _, pall_mall], S),\n    member([yellow, _, _, _, dunhill], S),\n    D3 = milk,\n    N1 = 'Norwegian',\n    next_to([_, _, _, _, blend], [_, _, cats |_], S),\n    next_to([_, _, _, _, dunhill], [_, _, horse |_], S),\n    member([_, _, _, beer, blue_master], S),\n    member([_, 'German', _, _, prince], S),\n    next_to([_, 'Norwegian' |_], [blue |_], S),\n    next_to([_, _, _, water,_], [_, _, _, _, blend], S),\n    C1 \\== C2, C1 \\== C3, C1 \\== C4, C1 \\== C5,\n    C2 \\== C3, C2 \\== C4, C2 \\== C5,\n    C3 \\== C4, C3 \\== C5, C4 \\== C5,\n    N1 \\== N2, N1 \\== N3, N1 \\== N4, N1 \\== N5,\n    N2 \\== N3, N2 \\== N4, N2 \\== N5,\n    N3 \\== N4, N3 \\== N5, N4 \\== N5,\n    P1 \\== P2, P1 \\== P3, P1 \\== P4, P1 \\== P5,\n    P2 \\== P3, P2 \\== P4, P2 \\== P5,\n    P3 \\== P4, P3 \\== P5, P4 \\== P5,\n    D1 \\== D2, D1 \\== D3, D1 \\== D4, D1 \\== D5,\n    D2 \\== D3, D2 \\== D4, D2 \\== D5,\n    D3 \\== D4, D3 \\== D5, D4 \\== D5,\n    S1 \\== S2, S1 \\== S3, S1 \\== S4, S1 \\== S5,\n    S2 \\== S3, S2 \\== S4, S2 \\== S5,\n    S3 \\== S4, S3 \\== S5, S4 \\== S5.\n\nleft_of(L1, L2, [L1, L2 |_]).\nleft_of(L1, L2, [_| Rest ]) :- left_of(L1, L2, Rest).\n    \nnext_to(L1, L2, S) :- left_of(L1, L2, S).\nnext_to(L1, L2, S) :- left_of(L2, L1, S).\n\n";
 blub_prolog_AtomContext.GLOBALS = new blub_prolog_AtomContext();
 blub_prolog_Marshal.object_atom_id = 0;
@@ -11913,6 +11931,7 @@ haxe_crypto_Base64.BYTES = haxe_io_Bytes.ofString(haxe_crypto_Base64.CHARS);
 haxe_crypto_Base64.URL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 haxe_crypto_Base64.URL_BYTES = haxe_io_Bytes.ofString(haxe_crypto_Base64.URL_CHARS);
 theories_EightQueens.theory = "queens([]).                                  % when place queen in empty list, solution found\n \nqueens([ Row/Col | Rest]) :-                 % otherwise, for each row\n            queens(Rest),                    % place a queen in each higher numbered row\n            member(Col, [1,2,3,4,5,6,7,8]),  % pick one of the possible column positions\n            safe( Row/Col, Rest).            % and see if that is a safe position\n                                             % if not, fail back and try another column, until\n                                             % the columns are all tried, when fail back to\n                                             % previous row\n \nsafe(_, []).                                 % the empty board is always safe\n \nsafe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next row down\n            Col =\\= Col1,                   % same column?\n            Col1 - Col =\\= Row1 - Row,      % check diagonal\n            Col1 - Col =\\= Row - Row1,\n            safe(Row/Col, Rest).             % no attack on next row, try the rest of board\n  \nboard([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).  % prototype board\n\nrun_queens(B) :- board(B),queens(B).\n";
+theories_OKeefe8Queens.theory = "queens(Queens) :-\n    board(Queens, Board, 0, 8, _, _),\n    queens(Board, 0, Queens).\n\nboard([], [], N, N, _, _).\nboard([_|Queens], [Col-Vars|Board], Col0, N, [_|VR], VC) :-\n    Col is Col0+1,\n    functor(Vars, f, N),\n    constraints(N, Vars, VR, VC),\n    board(Queens, Board, Col, N, VR, [_|VC]).\n\nconstraints(0, _, _, _) :- !.\nconstraints(N, Row, [R|Rs], [C|Cs]) :-\n    arg(N, Row, R-C),\n    M is N-1,\n    constraints(M, Row, Rs, Cs).\n\nqueens([], _, []).\nqueens([C|Cs], Row0, [Col|Solution]) :-\n    Row is Row0+1,\n    select(Col-Vars, [C|Cs], Board),\n    arg(Row, Vars, Row-Row),\n    queens(Board, Row, Solution).\n\nrun_queens(B) :- B= [_,_,_,_,_,_,_,_], queens(B).\n\nselect(X, [Head|Tail], Rest) :-\n    select3_(Tail, Head, X, Rest).\n\nselect3_(Tail, Head, Head, Tail).\nselect3_([Head2|Tail], Head, X, [Head|Rest]) :-\n    select3_(Tail, Head2, X, Rest).\n";
 theories_Zebra.theory = "zebra(Owner) :- solve(S),member([_, Owner, zebra, _, _], S).\n\nsolve(S) :-\n    S = [[C1,N1,P1,D1,S1],\n         [C2,N2,P2,D2,S2],\n         [C3,N3,P3,D3,S3],\n         [C4,N4,P4,D4,S4],\n         [C5,N5,P5,D5,S5]],\n    member([red, 'English man', _, _, _], S),\n    member([_, 'Swede', dog, _, _], S),\n    member([_, 'Dane', _, tea, _], S),\n    left_of([green |_], [white |_], S),\n    member([green, _, _, coffee, _], S),\n    member([_, _, birds, _, pall_mall], S),\n    member([yellow, _, _, _, dunhill], S),\n    D3 = milk,\n    N1 = 'Norwegian',\n    next_to([_, _, _, _, blend], [_, _, cats |_], S),\n    next_to([_, _, _, _, dunhill], [_, _, horse |_], S),\n    member([_, _, _, beer, blue_master], S),\n    member([_, 'German', _, _, prince], S),\n    next_to([_, 'Norwegian' |_], [blue |_], S),\n    next_to([_, _, _, water,_], [_, _, _, _, blend], S),\n    C1 \\== C2, C1 \\== C3, C1 \\== C4, C1 \\== C5,\n    C2 \\== C3, C2 \\== C4, C2 \\== C5,\n    C3 \\== C4, C3 \\== C5, C4 \\== C5,\n    N1 \\== N2, N1 \\== N3, N1 \\== N4, N1 \\== N5,\n    N2 \\== N3, N2 \\== N4, N2 \\== N5,\n    N3 \\== N4, N3 \\== N5, N4 \\== N5,\n    P1 \\== P2, P1 \\== P3, P1 \\== P4, P1 \\== P5,\n    P2 \\== P3, P2 \\== P4, P2 \\== P5,\n    P3 \\== P4, P3 \\== P5, P4 \\== P5,\n    D1 \\== D2, D1 \\== D3, D1 \\== D4, D1 \\== D5,\n    D2 \\== D3, D2 \\== D4, D2 \\== D5,\n    D3 \\== D4, D3 \\== D5, D4 \\== D5,\n    S1 \\== S2, S1 \\== S3, S1 \\== S4, S1 \\== S5,\n    S2 \\== S3, S2 \\== S4, S2 \\== S5,\n    S3 \\== S4, S3 \\== S5, S4 \\== S5.\n\nleft_of(L1, L2, [L1, L2 |_]).\nleft_of(L1, L2, [_| Rest ]) :- left_of(L1, L2, Rest).\n    \nnext_to(L1, L2, S) :- left_of(L1, L2, S).\nnext_to(L1, L2, S) :- left_of(L2, L1, S).\n\n";
 TimingTests.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this, typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

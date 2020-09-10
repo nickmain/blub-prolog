@@ -1569,7 +1569,7 @@ class TimingTests:
     __slots__ = ("db", "query")
     _hx_fields = ["db", "query"]
     _hx_methods = ["run"]
-    _hx_statics = ["log", "clear", "stressTestQueens", "stressTestZebra", "stressTest", "main", "queens_theory", "zebra_theory"]
+    _hx_statics = ["log", "clear", "stressTestQueens", "stressTestOKeefeQueens", "stressTestZebra", "stressTest", "main", "queens_theory", "okeefe_queens_theory", "zebra_theory"]
 
     def __init__(self,theory):
         self.query = None
@@ -1609,8 +1609,20 @@ class TimingTests:
                 haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 52, 'className': "TimingTests", 'methodName': "stressTestQueens"}))
 
     @staticmethod
+    def stressTestOKeefeQueens(count):
+        haxe_Log.trace((("Running O'Keefe 8 Queens * " + Std.string(count)) + " ..."),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 58, 'className': "TimingTests", 'methodName': "stressTestOKeefeQueens"}))
+        solutions = TimingTests.stressTest(TimingTests.okeefe_queens_theory,"run_queens",count)
+        if (count == 1):
+            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 61, 'className': "TimingTests", 'methodName': "stressTestOKeefeQueens"}))
+            _g = 0
+            while (_g < len(solutions)):
+                solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
+                _g = (_g + 1)
+                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 63, 'className': "TimingTests", 'methodName': "stressTestOKeefeQueens"}))
+
+    @staticmethod
     def stressTestZebra(count):
-        haxe_Log.trace((("Running Zebra * " + Std.string(count)) + " ..."),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 58, 'className': "TimingTests", 'methodName': "stressTestZebra"}))
+        haxe_Log.trace((("Running Zebra * " + Std.string(count)) + " ..."),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 69, 'className': "TimingTests", 'methodName': "stressTestZebra"}))
         TimingTests.stressTest(TimingTests.zebra_theory,"zebra",count)
 
     @staticmethod
@@ -1626,33 +1638,34 @@ class TimingTests:
             timestamp = python_lib_Timeit.default_timer()
             solutions = test.run(predName)
             time = (time + ((python_lib_Timeit.default_timer() - timestamp)))
-        haxe_Log.trace(("Average time = " + Std.string(((time / count)))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 74, 'className': "TimingTests", 'methodName': "stressTest"}))
+        haxe_Log.trace(("Average time = " + Std.string(((time / count)))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 85, 'className': "TimingTests", 'methodName': "stressTest"}))
         return solutions
 
     @staticmethod
     def main():
         def _hx_local_2():
-            haxe_Log.trace("Starting....",_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 107, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace("Starting....",_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 118, 'className': "TimingTests", 'methodName': "main"}))
             zebra = TimingTests(TimingTests.zebra_theory)
             timestamp = python_lib_Timeit.default_timer()
             solutions = zebra.run("zebra")
-            haxe_Log.trace((("Zebra in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 111, 'className': "TimingTests", 'methodName': "main"}))
-            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 112, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace((("Zebra in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 122, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 123, 'className': "TimingTests", 'methodName': "main"}))
             _g = 0
             while (_g < len(solutions)):
                 solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
                 _g = (_g + 1)
-                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 114, 'className': "TimingTests", 'methodName': "main"}))
+                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 125, 'className': "TimingTests", 'methodName': "main"}))
+            TimingTests.stressTestOKeefeQueens(8)
             queens = TimingTests(TimingTests.queens_theory)
             timestamp = python_lib_Timeit.default_timer()
             solutions = queens.run("run_queens")
-            haxe_Log.trace((("8 queens in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 121, 'className': "TimingTests", 'methodName': "main"}))
-            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 122, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace((("8 queens in " + Std.string(((python_lib_Timeit.default_timer() - timestamp)))) + " seconds"),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 134, 'className': "TimingTests", 'methodName': "main"}))
+            haxe_Log.trace(("solution count = " + Std.string(len(solutions))),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 135, 'className': "TimingTests", 'methodName': "main"}))
             _g = 0
             while (_g < len(solutions)):
                 solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
                 _g = (_g + 1)
-                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 127, 'className': "TimingTests", 'methodName': "main"}))
+                haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 140, 'className': "TimingTests", 'methodName': "main"}))
         haxe_Timer.delay(_hx_local_2,500)
 
     @staticmethod
@@ -15819,6 +15832,13 @@ class theories_EightQueens:
 _hx_classes["theories.EightQueens"] = theories_EightQueens
 
 
+class theories_OKeefe8Queens:
+    _hx_class_name = "theories.OKeefe8Queens"
+    __slots__ = ()
+    _hx_statics = ["theory"]
+_hx_classes["theories.OKeefe8Queens"] = theories_OKeefe8Queens
+
+
 class theories_Zebra:
     _hx_class_name = "theories.Zebra"
     __slots__ = ()
@@ -15847,6 +15867,7 @@ def _hx_init_Sys_environ():
 Sys.environ = _hx_init_Sys_environ()
 Sys._programPath = sys_FileSystem.fullPath(python_lib_Inspect.getsourcefile(Sys))
 TimingTests.queens_theory = "queens([]).                                  % when place queen in empty list, solution found\n \nqueens([ Row/Col | Rest]) :-                 % otherwise, for each row\n            queens(Rest),                    % place a queen in each higher numbered row\n            member(Col, [1,2,3,4,5,6,7,8]),  % pick one of the possible column positions\n            safe( Row/Col, Rest).            % and see if that is a safe position\n                                             % if not, fail back and try another column, until\n                                             % the columns are all tried, when fail back to\n                                             % previous row\n \nsafe(_, []).                                 % the empty board is always safe\n \nsafe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next row down\n            Col =\\= Col1,                   % same column?\n            Col1 - Col =\\= Row1 - Row,      % check diagonal\n            Col1 - Col =\\= Row - Row1,\n            safe(Row/Col, Rest).             % no attack on next row, try the rest of board\n  \nboard([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).  % prototype board\n\nrun_queens(B) :- board(B),queens(B).\n"
+TimingTests.okeefe_queens_theory = "queens(Queens) :-\n    board(Queens, Board, 0, 8, _, _),\n    queens(Board, 0, Queens).\n\nboard([], [], N, N, _, _).\nboard([_|Queens], [Col-Vars|Board], Col0, N, [_|VR], VC) :-\n    Col is Col0+1,\n    functor(Vars, f, N),\n    constraints(N, Vars, VR, VC),\n    board(Queens, Board, Col, N, VR, [_|VC]).\n\nconstraints(0, _, _, _) :- !.\nconstraints(N, Row, [R|Rs], [C|Cs]) :-\n    arg(N, Row, R-C),\n    M is N-1,\n    constraints(M, Row, Rs, Cs).\n\nqueens([], _, []).\nqueens([C|Cs], Row0, [Col|Solution]) :-\n    Row is Row0+1,\n    select(Col-Vars, [C|Cs], Board),\n    arg(Row, Vars, Row-Row),\n    queens(Board, Row, Solution).\n\nrun_queens(B) :- B= [_,_,_,_,_,_,_,_], queens(B).\n\nselect(X, [Head|Tail], Rest) :-\n    select3_(Tail, Head, X, Rest).\n\nselect3_(Tail, Head, Head, Tail).\nselect3_([Head2|Tail], Head, X, [Head|Rest]) :-\n    select3_(Tail, Head2, X, Rest).\n"
 TimingTests.zebra_theory = "zebra(Owner) :- solve(S),member([_, Owner, zebra, _, _], S).\n\nsolve(S) :-\n    S = [[C1,N1,P1,D1,S1],\n         [C2,N2,P2,D2,S2],\n         [C3,N3,P3,D3,S3],\n         [C4,N4,P4,D4,S4],\n         [C5,N5,P5,D5,S5]],\n    member([red, 'English man', _, _, _], S),\n    member([_, 'Swede', dog, _, _], S),\n    member([_, 'Dane', _, tea, _], S),\n    left_of([green |_], [white |_], S),\n    member([green, _, _, coffee, _], S),\n    member([_, _, birds, _, pall_mall], S),\n    member([yellow, _, _, _, dunhill], S),\n    D3 = milk,\n    N1 = 'Norwegian',\n    next_to([_, _, _, _, blend], [_, _, cats |_], S),\n    next_to([_, _, _, _, dunhill], [_, _, horse |_], S),\n    member([_, _, _, beer, blue_master], S),\n    member([_, 'German', _, _, prince], S),\n    next_to([_, 'Norwegian' |_], [blue |_], S),\n    next_to([_, _, _, water,_], [_, _, _, _, blend], S),\n    C1 \\== C2, C1 \\== C3, C1 \\== C4, C1 \\== C5,\n    C2 \\== C3, C2 \\== C4, C2 \\== C5,\n    C3 \\== C4, C3 \\== C5, C4 \\== C5,\n    N1 \\== N2, N1 \\== N3, N1 \\== N4, N1 \\== N5,\n    N2 \\== N3, N2 \\== N4, N2 \\== N5,\n    N3 \\== N4, N3 \\== N5, N4 \\== N5,\n    P1 \\== P2, P1 \\== P3, P1 \\== P4, P1 \\== P5,\n    P2 \\== P3, P2 \\== P4, P2 \\== P5,\n    P3 \\== P4, P3 \\== P5, P4 \\== P5,\n    D1 \\== D2, D1 \\== D3, D1 \\== D4, D1 \\== D5,\n    D2 \\== D3, D2 \\== D4, D2 \\== D5,\n    D3 \\== D4, D3 \\== D5, D4 \\== D5,\n    S1 \\== S2, S1 \\== S3, S1 \\== S4, S1 \\== S5,\n    S2 \\== S3, S2 \\== S4, S2 \\== S5,\n    S3 \\== S4, S3 \\== S5, S4 \\== S5.\n\nleft_of(L1, L2, [L1, L2 |_]).\nleft_of(L1, L2, [_| Rest ]) :- left_of(L1, L2, Rest).\n    \nnext_to(L1, L2, S) :- left_of(L1, L2, S).\nnext_to(L1, L2, S) :- left_of(L2, L1, S).\n\n"
 blub_prolog_AtomContext.GLOBALS = blub_prolog_AtomContext()
 blub_prolog_Marshal.object_atom_id = 0
@@ -15927,6 +15948,7 @@ haxe_io_FPHelper.i64tmp = _hx_init_haxe_io_FPHelper_i64tmp()
 haxe_io_FPHelper.LN2 = 0.6931471805599453
 python_Lib.lineEnd = ("\r\n" if ((Sys.systemName() == "Windows")) else "\n")
 theories_EightQueens.theory = "queens([]).                                  % when place queen in empty list, solution found\n \nqueens([ Row/Col | Rest]) :-                 % otherwise, for each row\n            queens(Rest),                    % place a queen in each higher numbered row\n            member(Col, [1,2,3,4,5,6,7,8]),  % pick one of the possible column positions\n            safe( Row/Col, Rest).            % and see if that is a safe position\n                                             % if not, fail back and try another column, until\n                                             % the columns are all tried, when fail back to\n                                             % previous row\n \nsafe(_, []).                                 % the empty board is always safe\n \nsafe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next row down\n            Col =\\= Col1,                   % same column?\n            Col1 - Col =\\= Row1 - Row,      % check diagonal\n            Col1 - Col =\\= Row - Row1,\n            safe(Row/Col, Rest).             % no attack on next row, try the rest of board\n  \nboard([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).  % prototype board\n\nrun_queens(B) :- board(B),queens(B).\n"
+theories_OKeefe8Queens.theory = "queens(Queens) :-\n    board(Queens, Board, 0, 8, _, _),\n    queens(Board, 0, Queens).\n\nboard([], [], N, N, _, _).\nboard([_|Queens], [Col-Vars|Board], Col0, N, [_|VR], VC) :-\n    Col is Col0+1,\n    functor(Vars, f, N),\n    constraints(N, Vars, VR, VC),\n    board(Queens, Board, Col, N, VR, [_|VC]).\n\nconstraints(0, _, _, _) :- !.\nconstraints(N, Row, [R|Rs], [C|Cs]) :-\n    arg(N, Row, R-C),\n    M is N-1,\n    constraints(M, Row, Rs, Cs).\n\nqueens([], _, []).\nqueens([C|Cs], Row0, [Col|Solution]) :-\n    Row is Row0+1,\n    select(Col-Vars, [C|Cs], Board),\n    arg(Row, Vars, Row-Row),\n    queens(Board, Row, Solution).\n\nrun_queens(B) :- B= [_,_,_,_,_,_,_,_], queens(B).\n\nselect(X, [Head|Tail], Rest) :-\n    select3_(Tail, Head, X, Rest).\n\nselect3_(Tail, Head, Head, Tail).\nselect3_([Head2|Tail], Head, X, [Head|Rest]) :-\n    select3_(Tail, Head2, X, Rest).\n"
 theories_Zebra.theory = "zebra(Owner) :- solve(S),member([_, Owner, zebra, _, _], S).\n\nsolve(S) :-\n    S = [[C1,N1,P1,D1,S1],\n         [C2,N2,P2,D2,S2],\n         [C3,N3,P3,D3,S3],\n         [C4,N4,P4,D4,S4],\n         [C5,N5,P5,D5,S5]],\n    member([red, 'English man', _, _, _], S),\n    member([_, 'Swede', dog, _, _], S),\n    member([_, 'Dane', _, tea, _], S),\n    left_of([green |_], [white |_], S),\n    member([green, _, _, coffee, _], S),\n    member([_, _, birds, _, pall_mall], S),\n    member([yellow, _, _, _, dunhill], S),\n    D3 = milk,\n    N1 = 'Norwegian',\n    next_to([_, _, _, _, blend], [_, _, cats |_], S),\n    next_to([_, _, _, _, dunhill], [_, _, horse |_], S),\n    member([_, _, _, beer, blue_master], S),\n    member([_, 'German', _, _, prince], S),\n    next_to([_, 'Norwegian' |_], [blue |_], S),\n    next_to([_, _, _, water,_], [_, _, _, _, blend], S),\n    C1 \\== C2, C1 \\== C3, C1 \\== C4, C1 \\== C5,\n    C2 \\== C3, C2 \\== C4, C2 \\== C5,\n    C3 \\== C4, C3 \\== C5, C4 \\== C5,\n    N1 \\== N2, N1 \\== N3, N1 \\== N4, N1 \\== N5,\n    N2 \\== N3, N2 \\== N4, N2 \\== N5,\n    N3 \\== N4, N3 \\== N5, N4 \\== N5,\n    P1 \\== P2, P1 \\== P3, P1 \\== P4, P1 \\== P5,\n    P2 \\== P3, P2 \\== P4, P2 \\== P5,\n    P3 \\== P4, P3 \\== P5, P4 \\== P5,\n    D1 \\== D2, D1 \\== D3, D1 \\== D4, D1 \\== D5,\n    D2 \\== D3, D2 \\== D4, D2 \\== D5,\n    D3 \\== D4, D3 \\== D5, D4 \\== D5,\n    S1 \\== S2, S1 \\== S3, S1 \\== S4, S1 \\== S5,\n    S2 \\== S3, S2 \\== S4, S2 \\== S5,\n    S3 \\== S4, S3 \\== S5, S4 \\== S5.\n\nleft_of(L1, L2, [L1, L2 |_]).\nleft_of(L1, L2, [_| Rest ]) :- left_of(L1, L2, Rest).\n    \nnext_to(L1, L2, S) :- left_of(L1, L2, S).\nnext_to(L1, L2, S) :- left_of(L2, L1, S).\n\n"
 
 TimingTests.main()

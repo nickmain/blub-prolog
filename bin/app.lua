@@ -438,6 +438,7 @@ __sys_io_Process = _hx_e()
 __sys_io__Process_ProcessInput = _hx_e()
 __sys_io__Process_ProcessOutput = _hx_e()
 __theories_EightQueens = _hx_e()
+__theories_OKeefe8Queens = _hx_e()
 __theories_Zebra = _hx_e()
 
 local _hx_bind, _hx_bit, _hx_staticToInstance, _hx_funcToField, _hx_maxn, _hx_print, _hx_apply_self, _hx_box_mr, _hx_bit_clamp, _hx_table, _hx_bit_raw
@@ -2964,8 +2965,21 @@ TimingTests.stressTestQueens = function(count)
     end;
   end;
 end
+TimingTests.stressTestOKeefeQueens = function(count) 
+  __haxe_Log.trace(Std.string(Std.string("Running O'Keefe 8 Queens * ") .. Std.string(count)) .. Std.string(" ..."), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=58,className="TimingTests",methodName="stressTestOKeefeQueens"}));
+  local solutions = TimingTests.stressTest(TimingTests.okeefe_queens_theory, "run_queens", count);
+  if (count == 1) then 
+    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=61,className="TimingTests",methodName="stressTestOKeefeQueens"}));
+    local _g = 0;
+    while (_g < solutions.length) do 
+      local solution = solutions[_g];
+      _g = _g + 1;
+      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=63,className="TimingTests",methodName="stressTestOKeefeQueens"}));
+    end;
+  end;
+end
 TimingTests.stressTestZebra = function(count) 
-  __haxe_Log.trace(Std.string(Std.string("Running Zebra * ") .. Std.string(count)) .. Std.string(" ..."), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=58,className="TimingTests",methodName="stressTestZebra"}));
+  __haxe_Log.trace(Std.string(Std.string("Running Zebra * ") .. Std.string(count)) .. Std.string(" ..."), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=69,className="TimingTests",methodName="stressTestZebra"}));
   TimingTests.stressTest(TimingTests.zebra_theory, "zebra", count);
 end
 TimingTests.stressTest = function(theory,predName,count) 
@@ -2981,33 +2995,34 @@ TimingTests.stressTest = function(theory,predName,count)
     solutions = test:run(predName);
     time = time + (Sys.time() - timestamp);
   end;
-  __haxe_Log.trace(Std.string("Average time = ") .. Std.string(time / count), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=74,className="TimingTests",methodName="stressTest"}));
+  __haxe_Log.trace(Std.string("Average time = ") .. Std.string(time / count), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=85,className="TimingTests",methodName="stressTest"}));
   do return solutions end;
 end
 TimingTests.main = function() 
   __haxe_Timer.delay(function() 
-    __haxe_Log.trace("Starting....", _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=107,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace("Starting....", _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=118,className="TimingTests",methodName="main"}));
     local zebra = TimingTests.new(TimingTests.zebra_theory);
     local timestamp = Sys.time();
     local solutions = zebra:run("zebra");
-    __haxe_Log.trace(Std.string(Std.string("Zebra in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=111,className="TimingTests",methodName="main"}));
-    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=112,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string(Std.string("Zebra in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=122,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=123,className="TimingTests",methodName="main"}));
     local _g = 0;
     while (_g < solutions.length) do 
       local solution = solutions[_g];
       _g = _g + 1;
-      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=114,className="TimingTests",methodName="main"}));
+      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=125,className="TimingTests",methodName="main"}));
     end;
+    TimingTests.stressTestOKeefeQueens(8);
     local queens = TimingTests.new(TimingTests.queens_theory);
     timestamp = Sys.time();
     local solutions = queens:run("run_queens");
-    __haxe_Log.trace(Std.string(Std.string("8 queens in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=121,className="TimingTests",methodName="main"}));
-    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=122,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string(Std.string("8 queens in ") .. Std.string((Sys.time() - timestamp))) .. Std.string(" seconds"), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=134,className="TimingTests",methodName="main"}));
+    __haxe_Log.trace(Std.string("solution count = ") .. Std.string(solutions.length), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=135,className="TimingTests",methodName="main"}));
     local _g = 0;
     while (_g < solutions.length) do 
       local solution = solutions[_g];
       _g = _g + 1;
-      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=127,className="TimingTests",methodName="main"}));
+      __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=140,className="TimingTests",methodName="main"}));
     end;
   end, 500);
 end
@@ -18496,6 +18511,10 @@ __theories_EightQueens.new = {}
 _hxClasses["theories.EightQueens"] = __theories_EightQueens
 __theories_EightQueens.__name__ = "theories.EightQueens"
 
+__theories_OKeefe8Queens.new = {}
+_hxClasses["theories.OKeefe8Queens"] = __theories_OKeefe8Queens
+__theories_OKeefe8Queens.__name__ = "theories.OKeefe8Queens"
+
 __theories_Zebra.new = {}
 _hxClasses["theories.Zebra"] = __theories_Zebra
 __theories_Zebra.__name__ = "theories.Zebra"
@@ -18562,6 +18581,8 @@ local _hx_static_init = function()
   StringTools.winMetaCharacters = __haxe_SysTools.winMetaCharacters;
   
   TimingTests.queens_theory = "queens([]).                                  % when place queen in empty list, solution found\n \nqueens([ Row/Col | Rest]) :-                 % otherwise, for each row\n            queens(Rest),                    % place a queen in each higher numbered row\n            member(Col, [1,2,3,4,5,6,7,8]),  % pick one of the possible column positions\n            safe( Row/Col, Rest).            % and see if that is a safe position\n                                             % if not, fail back and try another column, until\n                                             % the columns are all tried, when fail back to\n                                             % previous row\n \nsafe(_, []).                                 % the empty board is always safe\n \nsafe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next row down\n            Col =\\= Col1,                   % same column?\n            Col1 - Col =\\= Row1 - Row,      % check diagonal\n            Col1 - Col =\\= Row - Row1,\n            safe(Row/Col, Rest).             % no attack on next row, try the rest of board\n  \nboard([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).  % prototype board\n\nrun_queens(B) :- board(B),queens(B).\n";
+  
+  TimingTests.okeefe_queens_theory = "queens(Queens) :-\n    board(Queens, Board, 0, 8, _, _),\n    queens(Board, 0, Queens).\n\nboard([], [], N, N, _, _).\nboard([_|Queens], [Col-Vars|Board], Col0, N, [_|VR], VC) :-\n    Col is Col0+1,\n    functor(Vars, f, N),\n    constraints(N, Vars, VR, VC),\n    board(Queens, Board, Col, N, VR, [_|VC]).\n\nconstraints(0, _, _, _) :- !.\nconstraints(N, Row, [R|Rs], [C|Cs]) :-\n    arg(N, Row, R-C),\n    M is N-1,\n    constraints(M, Row, Rs, Cs).\n\nqueens([], _, []).\nqueens([C|Cs], Row0, [Col|Solution]) :-\n    Row is Row0+1,\n    select(Col-Vars, [C|Cs], Board),\n    arg(Row, Vars, Row-Row),\n    queens(Board, Row, Solution).\n\nrun_queens(B) :- B= [_,_,_,_,_,_,_,_], queens(B).\n\nselect(X, [Head|Tail], Rest) :-\n    select3_(Tail, Head, X, Rest).\n\nselect3_(Tail, Head, Head, Tail).\nselect3_([Head2|Tail], Head, X, [Head|Rest]) :-\n    select3_(Tail, Head2, X, Rest).\n";
   
   TimingTests.zebra_theory = "zebra(Owner) :- solve(S),member([_, Owner, zebra, _, _], S).\n\nsolve(S) :-\n    S = [[C1,N1,P1,D1,S1],\n         [C2,N2,P2,D2,S2],\n         [C3,N3,P3,D3,S3],\n         [C4,N4,P4,D4,S4],\n         [C5,N5,P5,D5,S5]],\n    member([red, 'English man', _, _, _], S),\n    member([_, 'Swede', dog, _, _], S),\n    member([_, 'Dane', _, tea, _], S),\n    left_of([green |_], [white |_], S),\n    member([green, _, _, coffee, _], S),\n    member([_, _, birds, _, pall_mall], S),\n    member([yellow, _, _, _, dunhill], S),\n    D3 = milk,\n    N1 = 'Norwegian',\n    next_to([_, _, _, _, blend], [_, _, cats |_], S),\n    next_to([_, _, _, _, dunhill], [_, _, horse |_], S),\n    member([_, _, _, beer, blue_master], S),\n    member([_, 'German', _, _, prince], S),\n    next_to([_, 'Norwegian' |_], [blue |_], S),\n    next_to([_, _, _, water,_], [_, _, _, _, blend], S),\n    C1 \\== C2, C1 \\== C3, C1 \\== C4, C1 \\== C5,\n    C2 \\== C3, C2 \\== C4, C2 \\== C5,\n    C3 \\== C4, C3 \\== C5, C4 \\== C5,\n    N1 \\== N2, N1 \\== N3, N1 \\== N4, N1 \\== N5,\n    N2 \\== N3, N2 \\== N4, N2 \\== N5,\n    N3 \\== N4, N3 \\== N5, N4 \\== N5,\n    P1 \\== P2, P1 \\== P3, P1 \\== P4, P1 \\== P5,\n    P2 \\== P3, P2 \\== P4, P2 \\== P5,\n    P3 \\== P4, P3 \\== P5, P4 \\== P5,\n    D1 \\== D2, D1 \\== D3, D1 \\== D4, D1 \\== D5,\n    D2 \\== D3, D2 \\== D4, D2 \\== D5,\n    D3 \\== D4, D3 \\== D5, D4 \\== D5,\n    S1 \\== S2, S1 \\== S3, S1 \\== S4, S1 \\== S5,\n    S2 \\== S3, S2 \\== S4, S2 \\== S5,\n    S3 \\== S4, S3 \\== S5, S4 \\== S5.\n\nleft_of(L1, L2, [L1, L2 |_]).\nleft_of(L1, L2, [_| Rest ]) :- left_of(L1, L2, Rest).\n    \nnext_to(L1, L2, S) :- left_of(L1, L2, S).\nnext_to(L1, L2, S) :- left_of(L2, L1, S).\n\n";
   
@@ -18805,6 +18826,8 @@ local _hx_static_init = function()
   end )();
   
   __theories_EightQueens.theory = "queens([]).                                  % when place queen in empty list, solution found\n \nqueens([ Row/Col | Rest]) :-                 % otherwise, for each row\n            queens(Rest),                    % place a queen in each higher numbered row\n            member(Col, [1,2,3,4,5,6,7,8]),  % pick one of the possible column positions\n            safe( Row/Col, Rest).            % and see if that is a safe position\n                                             % if not, fail back and try another column, until\n                                             % the columns are all tried, when fail back to\n                                             % previous row\n \nsafe(_, []).                                 % the empty board is always safe\n \nsafe(Row/Col, [Row1/Col1 | Rest]) :-         % see if attack the queen in next row down\n            Col =\\= Col1,                   % same column?\n            Col1 - Col =\\= Row1 - Row,      % check diagonal\n            Col1 - Col =\\= Row - Row1,\n            safe(Row/Col, Rest).             % no attack on next row, try the rest of board\n  \nboard([1/_, 2/_, 3/_, 4/_, 5/_, 6/_, 7/_, 8/_]).  % prototype board\n\nrun_queens(B) :- board(B),queens(B).\n";
+  
+  __theories_OKeefe8Queens.theory = "queens(Queens) :-\n    board(Queens, Board, 0, 8, _, _),\n    queens(Board, 0, Queens).\n\nboard([], [], N, N, _, _).\nboard([_|Queens], [Col-Vars|Board], Col0, N, [_|VR], VC) :-\n    Col is Col0+1,\n    functor(Vars, f, N),\n    constraints(N, Vars, VR, VC),\n    board(Queens, Board, Col, N, VR, [_|VC]).\n\nconstraints(0, _, _, _) :- !.\nconstraints(N, Row, [R|Rs], [C|Cs]) :-\n    arg(N, Row, R-C),\n    M is N-1,\n    constraints(M, Row, Rs, Cs).\n\nqueens([], _, []).\nqueens([C|Cs], Row0, [Col|Solution]) :-\n    Row is Row0+1,\n    select(Col-Vars, [C|Cs], Board),\n    arg(Row, Vars, Row-Row),\n    queens(Board, Row, Solution).\n\nrun_queens(B) :- B= [_,_,_,_,_,_,_,_], queens(B).\n\nselect(X, [Head|Tail], Rest) :-\n    select3_(Tail, Head, X, Rest).\n\nselect3_(Tail, Head, Head, Tail).\nselect3_([Head2|Tail], Head, X, [Head|Rest]) :-\n    select3_(Tail, Head2, X, Rest).\n";
   
   __theories_Zebra.theory = "zebra(Owner) :- solve(S),member([_, Owner, zebra, _, _], S).\n\nsolve(S) :-\n    S = [[C1,N1,P1,D1,S1],\n         [C2,N2,P2,D2,S2],\n         [C3,N3,P3,D3,S3],\n         [C4,N4,P4,D4,S4],\n         [C5,N5,P5,D5,S5]],\n    member([red, 'English man', _, _, _], S),\n    member([_, 'Swede', dog, _, _], S),\n    member([_, 'Dane', _, tea, _], S),\n    left_of([green |_], [white |_], S),\n    member([green, _, _, coffee, _], S),\n    member([_, _, birds, _, pall_mall], S),\n    member([yellow, _, _, _, dunhill], S),\n    D3 = milk,\n    N1 = 'Norwegian',\n    next_to([_, _, _, _, blend], [_, _, cats |_], S),\n    next_to([_, _, _, _, dunhill], [_, _, horse |_], S),\n    member([_, _, _, beer, blue_master], S),\n    member([_, 'German', _, _, prince], S),\n    next_to([_, 'Norwegian' |_], [blue |_], S),\n    next_to([_, _, _, water,_], [_, _, _, _, blend], S),\n    C1 \\== C2, C1 \\== C3, C1 \\== C4, C1 \\== C5,\n    C2 \\== C3, C2 \\== C4, C2 \\== C5,\n    C3 \\== C4, C3 \\== C5, C4 \\== C5,\n    N1 \\== N2, N1 \\== N3, N1 \\== N4, N1 \\== N5,\n    N2 \\== N3, N2 \\== N4, N2 \\== N5,\n    N3 \\== N4, N3 \\== N5, N4 \\== N5,\n    P1 \\== P2, P1 \\== P3, P1 \\== P4, P1 \\== P5,\n    P2 \\== P3, P2 \\== P4, P2 \\== P5,\n    P3 \\== P4, P3 \\== P5, P4 \\== P5,\n    D1 \\== D2, D1 \\== D3, D1 \\== D4, D1 \\== D5,\n    D2 \\== D3, D2 \\== D4, D2 \\== D5,\n    D3 \\== D4, D3 \\== D5, D4 \\== D5,\n    S1 \\== S2, S1 \\== S3, S1 \\== S4, S1 \\== S5,\n    S2 \\== S3, S2 \\== S4, S2 \\== S5,\n    S3 \\== S4, S3 \\== S5, S4 \\== S5.\n\nleft_of(L1, L2, [L1, L2 |_]).\nleft_of(L1, L2, [_| Rest ]) :- left_of(L1, L2, Rest).\n    \nnext_to(L1, L2, S) :- left_of(L1, L2, S).\nnext_to(L1, L2, S) :- left_of(L2, L1, S).\n\n";
   
