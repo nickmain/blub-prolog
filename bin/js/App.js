@@ -871,7 +871,7 @@ TimingTests.main = function() {
 			++_g;
 			haxe_Log.trace(solution.toString(),{ fileName : "src/TimingTests.hx", lineNumber : 125, className : "TimingTests", methodName : "main"});
 		}
-		TimingTests.stressTestOKeefeQueens(8);
+		TimingTests.stressTestOKeefeQueens(10);
 		var queens = new TimingTests(TimingTests.queens_theory);
 		timestamp = HxOverrides.now() / 1000;
 		var solutions = queens.run("run_queens");

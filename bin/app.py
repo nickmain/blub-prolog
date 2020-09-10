@@ -1655,7 +1655,7 @@ class TimingTests:
                 solution = (solutions[_g] if _g >= 0 and _g < len(solutions) else None)
                 _g = (_g + 1)
                 haxe_Log.trace(solution.toString(),_hx_AnonObject({'fileName': "src/TimingTests.hx", 'lineNumber': 125, 'className': "TimingTests", 'methodName': "main"}))
-            TimingTests.stressTestOKeefeQueens(8)
+            TimingTests.stressTestOKeefeQueens(10)
             queens = TimingTests(TimingTests.queens_theory)
             timestamp = python_lib_Timeit.default_timer()
             solutions = queens.run("run_queens")

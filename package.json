@@ -1,6 +1,9 @@
 {
     "scripts": {
         "compile:HashlinkC": "haxe build/hashlink.hxml",
-        "compile:C++": "haxe build/cpp.hxml"
+        "compile:C++": "haxe build/cpp.hxml",
+        "run:C++": "bin/cpp/TimingTests",
+        "run:Python": "python3 bin/app.py",
+        "run:JVM": "java -jar bin/app.jar"
     }
 }

@@ -3012,7 +3012,7 @@ TimingTests.main = function()
       _g = _g + 1;
       __haxe_Log.trace(solution:toString(), _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/TimingTests.hx",lineNumber=125,className="TimingTests",methodName="main"}));
     end;
-    TimingTests.stressTestOKeefeQueens(8);
+    TimingTests.stressTestOKeefeQueens(10);
     local queens = TimingTests.new(TimingTests.queens_theory);
     timestamp = Sys.time();
     local solutions = queens:run("run_queens");

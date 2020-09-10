@@ -125,7 +125,7 @@ class TimingTests {
                 trace( solution.toString() );           
             }
                         
-            stressTestOKeefeQueens(8);
+            stressTestOKeefeQueens(10);
             
             var queens = new TimingTests( queens_theory );
             
