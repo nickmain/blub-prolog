@@ -1,16 +1,10 @@
 import blub.prolog.Database;
 import blub.prolog.Query;
-import blub.prolog.Result;
-import blub.prolog.Predicate;
-import blub.prolog.Clause;
 
 import blub.prolog.terms.Term;
 import blub.prolog.terms.Structure;
 import blub.prolog.terms.Variable;
-import blub.prolog.terms.Reference;
 
-import blub.prolog.engine.QueryEngine;
-import haxe.Log;
 import haxe.Timer;
 
 using blub.prolog.Result.ResultUtil; 
